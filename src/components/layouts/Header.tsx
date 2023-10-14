@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import React from "react";
-
+import defaultUserImage from "../../../public/assets/user.png";
+import LogoImage from "../../../public/assets/logo.png";
+import Image from "next/image";
 const Header = () => {
   const user = {
     email: "test",
@@ -34,10 +36,10 @@ const Header = () => {
             ></label>
             <div className="relative z-40">
               <Link href="/" aria-label="logo">
-                <img
-                  src="https://res.cloudinary.com/arafatleo/image/upload/v1693459375/Pro%20careers/career-png_102196_i7die3.jpg"
+                <Image
+                  src={LogoImage}
                   className="w-20 sm:w-20 rounded-full "
-                  alt="tailus logo"
+                  alt="User logo"
                   width="144"
                   height="68"
                 />
@@ -60,7 +62,7 @@ const Header = () => {
                                                         before:absolute before:-bottom-2 md:before:-bottom-7 before:origin-left before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 dark:before:bg-cyan-400 before:transition before:scale-x-0 group-hover:before:scale-x-100"
                       >
                         <span className="transition group-hover:text-cyan-700 dark:group-hover:text-cyan-400">
-                          Adiddas
+                          Home
                         </span>
                       </div>
                     </a>
@@ -72,7 +74,43 @@ const Header = () => {
                                                         before:absolute before:-bottom-2 md:before:-bottom-7 before:origin-left before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 dark:before:bg-cyan-400 before:transition before:scale-x-0 group-hover:before:scale-x-100"
                       >
                         <span className="transition group-hover:text-cyan-700 dark:group-hover:text-cyan-400">
-                          Cart
+                          Services
+                        </span>
+                      </div>
+                    </a>
+                  </li>
+                  <li className="max-w-max">
+                    <a href="#" className="block md:px-3 group">
+                      <div
+                        className="relative text-white 
+                                                        before:absolute before:-bottom-2 md:before:-bottom-7 before:origin-left before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 dark:before:bg-cyan-400 before:transition before:scale-x-0 group-hover:before:scale-x-100"
+                      >
+                        <span className="transition group-hover:text-cyan-700 dark:group-hover:text-cyan-400">
+                          About US
+                        </span>
+                      </div>
+                    </a>
+                  </li>
+                  <li className="max-w-max">
+                    <a href="#" className="block md:px-3 group">
+                      <div
+                        className="relative text-white 
+                                                        before:absolute before:-bottom-2 md:before:-bottom-7 before:origin-left before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 dark:before:bg-cyan-400 before:transition before:scale-x-0 group-hover:before:scale-x-100"
+                      >
+                        <span className="transition group-hover:text-cyan-700 dark:group-hover:text-cyan-400">
+                          FAQ
+                        </span>
+                      </div>
+                    </a>
+                  </li>
+                  <li className="max-w-max">
+                    <a href="#" className="block md:px-3 group">
+                      <div
+                        className="relative text-white 
+                                                        before:absolute before:-bottom-2 md:before:-bottom-7 before:origin-left before:w-full before:h-0.5 before:mx-auto before:mt-auto before:rounded-full before:bg-cyan-800 dark:before:bg-cyan-400 before:transition before:scale-x-0 group-hover:before:scale-x-100"
+                      >
+                        <span className="transition group-hover:text-cyan-700 dark:group-hover:text-cyan-400">
+                          Blogs
                         </span>
                       </div>
                     </a>
