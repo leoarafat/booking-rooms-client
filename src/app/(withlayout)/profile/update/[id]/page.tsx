@@ -12,6 +12,7 @@ import {
   useUpdateProfileMutation,
 } from "@/redux/slices/user/userApi";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
 type Props = {
   avatar: string | null;
@@ -21,13 +22,16 @@ type Props = {
 const ProfileInfo: FC<Props> = ({ params }: any) => {
   const id = params.id;
   const [avatar, setAvatar] = useState(null);
-  const { data: userData, refetch } = useLoadUserQuery(id);
-
+  const { data: userData, refetch } = useLoadUserQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
+  console.log(userData);
   const initialName = userData?.name || "";
   const [name, setName] = useState(initialName);
 
   const [updateAvatar, { isSuccess, isLoading, error }] =
     useUpdateAvatarMutation();
+
   const [
     updateProfile,
     {
@@ -45,7 +49,6 @@ const ProfileInfo: FC<Props> = ({ params }: any) => {
     fileReader.onload = () => {
       if (fileReader.readyState === 2) {
         const avatars = fileReader.result;
-
         updateAvatar(avatars);
       }
     };
@@ -54,25 +57,35 @@ const ProfileInfo: FC<Props> = ({ params }: any) => {
 
   useEffect(() => {
     if (isSuccess || updateSuccess) {
+      refetch();
+      router.push("/profile");
       setLoadUser(true);
     }
     if (error) {
-      console.error(error || updateError);
+      //@ts-ignore
+      if ("data" in error) {
+        message.error("Your file size is big. Please upload maximum 30kb file");
+      }
     }
     if (updateSuccess) {
       message.success("Profile updated successfully");
+      refetch();
       router.push("/profile");
     }
-    if (isProfileError) {
-      // message.error(updateError)
-    }
-  }, [isSuccess, error, updateSuccess, updateError, isProfileError, router]);
+  }, [
+    isSuccess,
+    error,
+    updateSuccess,
+    updateError,
+    isProfileError,
+    router,
+    refetch,
+  ]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const res = await updateProfile({ id, name });
-      console.log(res);
     } catch (error) {}
   };
   return (
@@ -123,7 +136,7 @@ const ProfileInfo: FC<Props> = ({ params }: any) => {
                 type="text"
                 className={`${styles.input} w-full mb-4 800px:mb-0`}
                 value={name}
-                defaultValue={name}
+                defaultValue={userData?.name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>

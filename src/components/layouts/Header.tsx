@@ -11,7 +11,7 @@ const Header = () => {
   const user = getUserInfo() as any;
 
   const { data, isLoading, error } = useLoadUserQuery(user?.userId);
-
+  // console.log(data);
   return (
     <>
       <div
@@ -158,7 +158,7 @@ const Header = () => {
                     width={45}
                     height={45}
                     className="w-[45px] h-[45px] rounded-full cursor-pointer"
-                    src={defaultUserImage}
+                    src={data?.avatar ? data?.avatar?.url : defaultUserImage}
                     alt=""
                   />
                 </Link>

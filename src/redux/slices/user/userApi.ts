@@ -26,8 +26,9 @@ export const userApi = baseApi.injectEndpoints({
       query: (id: string | string[] | undefined) => ({
         url: `/user/${id}`,
         method: "GET",
+        credentials: "include" as const,
       }),
-      providesTags: [tagTypes.user],
+      // providesTags: [tagTypes.],
     }),
     //!
     updateAvatar: build.mutation({
@@ -48,15 +49,15 @@ export const userApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.user],
     }),
     //!
-    // updatePassword: builder.mutation({
-    //   query: ({ oldPassword, newPassword }) => ({
-    //     url: "/user/update-user-password",
-    //     method: "PUT",
-    //     body: { oldPassword, newPassword },
-    //     credentials: "include" as const,
-    //   }),
-    //   invalidatesTags: ["updatePassword"],
-    // }),
+    updatePassword: build.mutation({
+      query: ({ oldPassword, newPassword }) => ({
+        url: "/auth/change-password",
+        method: "POST",
+        data: { oldPassword, newPassword },
+        credentials: "include" as const,
+      }),
+      invalidatesTags: [tagTypes.updatePassword],
+    }),
     //!
 
     //!
@@ -69,4 +70,5 @@ export const {
   useLoadUserQuery,
   useUpdateAvatarMutation,
   useUpdateProfileMutation,
+  useUpdatePasswordMutation,
 } = userApi;

@@ -1,5 +1,6 @@
 import Header from "@/components/layouts/Header";
 import Heading from "@/utils/Heading";
+import dynamic from "next/dynamic";
 
 const RootPage = () => {
   return (
@@ -14,4 +15,6 @@ const RootPage = () => {
   );
 };
 
-export default RootPage;
+export default dynamic(() => Promise.resolve(RootPage), {
+  ssr: false,
+});
