@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 import { USER_ROLE } from "./role";
 export const sidebarItems = (role: string) => {
+  const isRole = role.toUpperCase();
   //!
   const defaultSidebarItems: MenuProps["items"] = [
     {
@@ -19,7 +20,7 @@ export const sidebarItems = (role: string) => {
       icon: <ProfileOutlined />,
       children: [
         {
-          label: <Link href={`/profile`}>Account Profile</Link>,
+          label: <Link href={`/profile`}>{isRole} Profile</Link>,
           key: `/profile`,
         },
       ],

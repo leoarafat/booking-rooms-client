@@ -2,7 +2,7 @@
 
 import { Table } from "antd";
 
-type UMTableProps = {
+type BookingTableProps = {
   loading?: boolean;
   columns: any;
   dataSource: any;
@@ -14,7 +14,7 @@ type UMTableProps = {
   showPagination?: boolean;
 };
 
-const UMTable = ({
+const BookingTable = ({
   loading = false,
   columns,
   dataSource,
@@ -24,7 +24,7 @@ const UMTable = ({
   onPaginationChange,
   onTableChange,
   showPagination = true,
-}: UMTableProps) => {
+}: BookingTableProps) => {
   const paginationConfig = showPagination
     ? {
         pageSize: pageSize,
@@ -46,4 +46,4 @@ const UMTable = ({
   );
 };
 
-export default UMTable;
+export default BookingTable;

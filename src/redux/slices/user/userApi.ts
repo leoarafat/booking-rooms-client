@@ -31,6 +31,24 @@ export const userApi = baseApi.injectEndpoints({
       // providesTags: [tagTypes.],
     }),
     //!
+
+    users: build.query({
+      query: (arg: Record<string, any>) => {
+        return {
+          url: `/user`,
+          method: "GET",
+          params: arg,
+        };
+      },
+      transformResponse: (response: any[], meta: any) => {
+        return {
+          users: response,
+          meta,
+        };
+      },
+      providesTags: [tagTypes.admin],
+    }),
+    //!
     updateAvatar: build.mutation({
       query: (avatar) => ({
         url: "/user/update-user-avatar",
@@ -59,7 +77,22 @@ export const userApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.updatePassword],
     }),
     //!
-
+    updateAdmin: build.mutation({
+      query: (data) => ({
+        url: `/user/admin-profile/${data.id}`,
+        method: "PATCH",
+        data: data.body,
+      }),
+      invalidatesTags: [tagTypes.admin],
+    }),
+    //! delete student
+    deleteAdmin: build.mutation({
+      query: (id) => ({
+        url: `/user/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.admin],
+    }),
     //!
   }),
 });
@@ -71,4 +104,7 @@ export const {
   useUpdateAvatarMutation,
   useUpdateProfileMutation,
   useUpdatePasswordMutation,
+  useUsersQuery,
+  useDeleteAdminMutation,
+  useUpdateAdminMutation,
 } = userApi;
