@@ -35,7 +35,6 @@ function SignUpPage() {
       password: data.password,
     };
     const res = await userCreate(userData);
-    console.log(res);
   };
 
   return (

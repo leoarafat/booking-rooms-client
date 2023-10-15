@@ -10,7 +10,17 @@ export const userApi = baseApi.injectEndpoints({
         data: userData,
       }),
 
-      //   providesTags: tagTypes.user,
+      invalidatesTags: [tagTypes.user],
+    }),
+    //!
+    createAdmin: build.mutation({
+      query: (adminData) => ({
+        url: `/user/create-admin`,
+        method: "POST",
+        data: adminData,
+      }),
+
+      invalidatesTags: [tagTypes.user],
     }),
     //!
     userLogin: build.mutation({
@@ -28,7 +38,7 @@ export const userApi = baseApi.injectEndpoints({
         method: "GET",
         credentials: "include" as const,
       }),
-      // providesTags: [tagTypes.],
+      providesTags: [tagTypes.user],
     }),
     //!
 
@@ -107,4 +117,5 @@ export const {
   useUsersQuery,
   useDeleteAdminMutation,
   useUpdateAdminMutation,
+  useCreateAdminMutation,
 } = userApi;

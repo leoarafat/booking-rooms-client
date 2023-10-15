@@ -24,7 +24,7 @@ const UserUpdateForm = ({ params }: any) => {
   //!
   const { data: userData, isLoading } = useLoadUserQuery(id);
   //!
-  const [updateAdmin, { isSuccess }] = useUpdateAdminMutation();
+  const [updateAdmin, { isLoading: updateLoading }] = useUpdateAdminMutation();
   //!
   const { handleSubmit, control } = useForm();
 
@@ -108,7 +108,8 @@ const UserUpdateForm = ({ params }: any) => {
                 color="primary"
                 sx={{ marginTop: 2 }}
               >
-                Update Ad
+                {updateLoading ? "Updating..." : "ate Admin"}
+                Upd
               </Button>
             </form>
           </Paper>
