@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 import { USER_ROLE } from "./role";
 export const sidebarItems = (role: string) => {
+  //!
   const defaultSidebarItems: MenuProps["items"] = [
     {
       label: "Profile",
@@ -143,15 +144,6 @@ export const sidebarItems = (role: string) => {
     },
   ];
 
-  const facultySidebarItems: MenuProps["items"] = [
-    ...defaultSidebarItems,
-    {
-      label: <Link href={`/${role}/courses`}>Courses</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/courses`,
-    },
-  ];
-
   const studentSidebarItems: MenuProps["items"] = [
     ...defaultSidebarItems,
     {
@@ -183,8 +175,7 @@ export const sidebarItems = (role: string) => {
 
   if (role === USER_ROLE.SUPER_ADMIN) return superAdminSidebarItems;
   else if (role === USER_ROLE.ADMIN) return adminSidebarItems;
-  else if (role === USER_ROLE.FACULTY) return facultySidebarItems;
-  else if (role === USER_ROLE.STUDENT) return studentSidebarItems;
+  // else if (role === USER_ROLE.USER) return studentSidebarItems;
   else {
     return defaultSidebarItems;
   }

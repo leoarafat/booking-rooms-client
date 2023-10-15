@@ -7,13 +7,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      gradients: {
-        custom:
-          "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,10,77,1) 40%, rgba(22,33,36,1) 100%)",
-      },
-    },
+    extend: {},
   },
   plugins: [],
+  // corePlugins: {
+  //   preflight: false,
+  // },
+  // important: true,
 };
 export default config;
