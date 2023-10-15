@@ -13,7 +13,8 @@ import {
 } from "@mui/material";
 import {
   useLoadUserQuery,
-  useUpdateAdminMutation,
+  useUpdateProfileByIdminMutation,
+  useUpdateProfileMutation,
 } from "@/redux/slices/user/userApi";
 import { useRouter } from "next/navigation";
 import { message } from "antd";
@@ -22,20 +23,27 @@ const UserUpdateForm = ({ params }: any) => {
   const id = params.id;
   const router = useRouter();
   //!
-  const { data: userData, isLoading } = useLoadUserQuery(id);
+  const {
+    data: userData,
+    isLoading,
+    refetch,
+  } = useLoadUserQuery(id, {
+    refetchOnMountOrArgChange: true,
+  });
   //!
-  const [updateAdmin, { isLoading: updateLoading }] = useUpdateAdminMutation();
+  const [updateProfileByIdmin, { isLoading: updateLoading }] =
+    useUpdateProfileByIdminMutation();
   //!
   const { handleSubmit, control } = useForm();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     try {
-      const res = await updateAdmin({ id, body: data });
+      const res = await updateProfileByIdmin({ id, body: data });
       //@ts-ignore
       if (res?.data?.name) {
         message.success("Admin successfully updated");
-        router.push("/super_admin/admin");
+        refetch();
+        router.push("/admin/user");
       }
     } catch (error) {}
   };
@@ -47,7 +55,7 @@ const UserUpdateForm = ({ params }: any) => {
       ) : (
         <Container>
           <Typography variant="h5" gutterBottom>
-            Update Admin Information
+            Update User Information
           </Typography>
           <Paper elevation={3} sx={{ padding: 3 }}>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -108,7 +116,7 @@ const UserUpdateForm = ({ params }: any) => {
                 color="primary"
                 sx={{ marginTop: 2 }}
               >
-                {updateLoading ? "Updating..." : "Update Admin"}
+                {updateLoading ? "Updating..." : "Update User"}
               </Button>
             </form>
           </Paper>

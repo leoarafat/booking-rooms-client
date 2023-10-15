@@ -103,7 +103,24 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.admin],
     }),
+    //! delete student
+    deleteUser: build.mutation({
+      query: (id) => ({
+        url: `/user/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.admin],
+    }),
     //!
+    //!
+    updateProfileByIdmin: build.mutation({
+      query: (data) => ({
+        url: `/user/user-profile/${data.id}`,
+        method: "PATCH",
+        data: data.body,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
@@ -118,4 +135,6 @@ export const {
   useDeleteAdminMutation,
   useUpdateAdminMutation,
   useCreateAdminMutation,
+  useDeleteUserMutation,
+  useUpdateProfileByIdminMutation,
 } = userApi;

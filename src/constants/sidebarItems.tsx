@@ -6,8 +6,15 @@ import {
   ScheduleOutlined,
   ThunderboltOutlined,
   CreditCardOutlined,
-  FileTextOutlined,
+  UsergroupAddOutlined,
+  PlusCircleOutlined,
+  UnorderedListOutlined,
+  ShoppingCartOutlined,
+  SwitcherOutlined,
 } from "@ant-design/icons";
+import QuizIcon from "@mui/icons-material/Quiz";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
 export const sidebarItems = (role: string) => {
@@ -31,6 +38,12 @@ export const sidebarItems = (role: string) => {
     ...defaultSidebarItems,
 
     {
+      label: <Link href={`/${role}/analytics`}>Analytics</Link>,
+      key: `/${role}/analytics`,
+      icon: <TbBrandGoogleAnalytics />,
+    },
+
+    {
       label: "Management",
       key: "management",
       icon: <AppstoreOutlined />,
@@ -38,34 +51,38 @@ export const sidebarItems = (role: string) => {
         {
           label: <Link href={`/${role}/user`}>User</Link>,
           key: `/${role}/user`,
+          icon: <UsergroupAddOutlined />,
         },
         {
           label: <Link href={`/${role}/category`}>Category</Link>,
           key: `/${role}/category`,
+          icon: <PlusCircleOutlined />,
         },
         {
           label: <Link href={`/${role}/service`}>Service</Link>,
           key: `/${role}/service`,
+          icon: <UnorderedListOutlined />,
         },
         {
           label: <Link href={`/${role}/bookings`}>Bookings</Link>,
           key: `/${role}/bookings`,
+          icon: <ShoppingCartOutlined />,
         },
-        {
-          label: <Link href={`/${role}/analytics`}>Analytics</Link>,
-          key: `/${role}/analytics`,
-        },
+
         {
           label: <Link href={`/${role}/faq`}>Faq</Link>,
           key: `/${role}/faq`,
+          icon: <QuizIcon />,
         },
         {
           label: <Link href={`/${role}/hero`}>Hero Sections</Link>,
           key: `/${role}/hero`,
+          icon: <SwitcherOutlined />,
         },
         {
           label: <Link href={`/${role}/blog`}>Blog Post</Link>,
           key: `/${role}/blog`,
+          icon: <PostAddIcon />,
         },
       ],
     },
@@ -78,11 +95,6 @@ export const sidebarItems = (role: string) => {
       label: <Link href={`/${role}/admin`}>Manage Admin</Link>,
       icon: <TableOutlined />,
       key: `/${role}/admin`,
-    },
-    {
-      label: <Link href={`/${role}/user`}>Manage User</Link>,
-      icon: <TableOutlined />,
-      key: `/${role}/user`,
     },
   ];
 
