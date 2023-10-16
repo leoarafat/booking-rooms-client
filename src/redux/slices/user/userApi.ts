@@ -20,7 +20,7 @@ export const userApi = baseApi.injectEndpoints({
         data: adminData,
       }),
 
-      invalidatesTags: [tagTypes.user],
+      invalidatesTags: [tagTypes.admin],
     }),
     //!
     userLogin: build.mutation({
@@ -56,7 +56,7 @@ export const userApi = baseApi.injectEndpoints({
           meta,
         };
       },
-      providesTags: [tagTypes.admin],
+      providesTags: [tagTypes.user],
     }),
     //!
     updateAvatar: build.mutation({
@@ -66,6 +66,7 @@ export const userApi = baseApi.injectEndpoints({
         data: { avatar },
         credentials: "include" as const,
       }),
+      invalidatesTags: [tagTypes.user],
     }),
     //!
     updateProfile: build.mutation({
@@ -84,7 +85,7 @@ export const userApi = baseApi.injectEndpoints({
         data: { oldPassword, newPassword },
         credentials: "include" as const,
       }),
-      invalidatesTags: [tagTypes.updatePassword],
+      invalidatesTags: [tagTypes.user],
     }),
     //!
     updateAdmin: build.mutation({

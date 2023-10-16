@@ -2,33 +2,31 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import ActionBar from "@/components/ui/ActionBar";
-import Link from "next/link";
 import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
-import { AiOutlineDelete } from "react-icons/ai";
-import { PiPencilSimpleThin } from "react-icons/pi";
+
+import { FcCancel } from "react-icons/fc";
 
 import Swal from "sweetalert2";
 import { format } from "timeago.js";
-import Avatar from "@mui/material/Avatar";
+
 import {
-  useCategoriesQuery,
-  useDeleteCategoryMutation,
-} from "@/redux/slices/category/categoryApi";
+  useBlogsQuery,
+  useDeleteBlogMutation,
+} from "@/redux/slices/blog/blogApi";
 //!
 
 //!
-const CategoryList = () => {
+const BookingList = () => {
   //@ts-ignore
-  const { data: categoryData } = useCategoriesQuery();
+  const { data: blogData } = useBlogsQuery({});
 
-  const [deleteCategory] = useDeleteCategoryMutation();
+  const [deleteBlog] = useDeleteBlogMutation();
   //!
   const handleDelete = async (item: any) => {
     try {
       const result = await Swal.fire({
         title: "Delete Item",
-        text: "Are you sure you want to delete this account?",
+        text: "Are you sure you want to cancel booking?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes, delete it!",
@@ -38,10 +36,10 @@ const CategoryList = () => {
       });
 
       if (result.isConfirmed) {
-        const res = await deleteCategory(item.id);
+        const res = await deleteBlog(item.id);
         //@ts-ignore
-        if (res?.data?.name) {
-          Swal.fire("Deleted!", "Category has been deleted.", "success");
+        if (res?.data?.title) {
+          Swal.fire("Deleted!", "Blog has been deleted.", "success");
         }
       }
     } catch (error) {
@@ -52,38 +50,21 @@ const CategoryList = () => {
   //!
   const columns = [
     { field: "id", headerName: "ID", flex: 0.3 },
-    { field: "category", headerName: "Category", flex: 0.5 },
+    { field: "startDate", headerName: "Start Date", flex: 0.5 },
+    { field: "endDate", headerName: "End Date", flex: 0.5 },
+    { field: "totalPrice", headerName: "Total Price", flex: 0.5 },
+    { field: "status", headerName: "Status", flex: 0.5 },
     { field: "created_at", headerName: "Created At", flex: 0.5 },
-    {
-      field: "thumbnail",
-      headerName: "Thumbnail",
-      flex: 0.3,
-      renderCell: (params: any) => (
-        <Avatar alt={params.row.category} src={params.row.thumbnail.url} />
-      ),
-    },
 
     {
       field: " ",
-      headerName: "Delete",
+      headerName: "Cancel",
       flex: 0.2,
       renderCell: (params: any) => {
         return (
           <Button onClick={() => handleDelete(params)}>
-            <AiOutlineDelete className=" text-black" size={20} />
+            <FcCancel size={20} />
           </Button>
-        );
-      },
-    },
-    {
-      field: "  ",
-      headerName: "Edit",
-      flex: 0.2,
-      renderCell: (params: any) => {
-        return (
-          <Link href={`/admin/category/edit/${params.id}`}>
-            <PiPencilSimpleThin className=" text-black" size={20} />
-          </Link>
         );
       },
     },
@@ -91,12 +72,15 @@ const CategoryList = () => {
   //!
   //!
   const rows: any[] = [];
-  if (categoryData) {
-    categoryData?.categories?.forEach((item: any) => {
+  if (blogData) {
+    //@ts-ignore
+    blogData?.blogs?.data?.forEach((item: any) => {
       rows.push({
         id: item.id,
-        category: item.category,
-        thumbnail: item.thumbnail,
+        startDate: item.title,
+        endDate: item.description,
+        totalPrice: item.avatar,
+        status: item.avatar,
         created_at: format(item.createdAt),
       });
     });
@@ -105,19 +89,12 @@ const CategoryList = () => {
 
   return (
     <div>
-      <ActionBar title="Category List">
+      <ActionBar title="Booking List">
         <input
           type="text"
           placeholder="Search..."
           className={`w-[150px] text-white bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
         />
-        <div>
-          <Link href="/admin/category/create">
-            <Button variant="contained" endIcon={<SendIcon />}>
-              Create Category
-            </Button>
-          </Link>
-        </div>
       </ActionBar>
       <div className="bg-white" style={{ height: 400, width: "100%" }}>
         <DataGrid
@@ -136,4 +113,4 @@ const CategoryList = () => {
   );
 };
 
-export default CategoryList;
+export default BookingList;

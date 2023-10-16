@@ -3,6 +3,10 @@ export enum tagTypes {
   updateProfile = "updateProfile",
   updatePassword = "updatePassword",
   admin = "admin",
+  blog = "blog",
+  category = "category",
+  service = "service",
+  faq = "faq",
 }
 
 export const tagTypesList = [
@@ -10,4 +14,8 @@ export const tagTypesList = [
   tagTypes.updateProfile,
   tagTypes.updatePassword,
   tagTypes.admin,
+  tagTypes.blog,
+  tagTypes.category,
+  tagTypes.service,
+  tagTypes.faq,
 ];

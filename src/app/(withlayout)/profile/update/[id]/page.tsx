@@ -66,10 +66,6 @@ const ProfileInfo: FC<Props> = ({ params }: any) => {
       setLoadUser(true);
     }
     if (error) {
-      //@ts-ignore
-      // if ("data" in error) {
-      //   message.error("Your file size is big. Please upload maximum 30kb file");
-      // }
     }
     if (updateSuccess) {
       message.success("Profile updated successfully");

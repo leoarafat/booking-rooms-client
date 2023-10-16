@@ -14,6 +14,7 @@ import {
 import { useCreateCategoryMutation } from "@/redux/slices/category/categoryApi";
 import { message } from "antd";
 import { LocationEnum } from "@/types";
+import { useRouter } from "next/navigation";
 
 const CategoryCreateForm = () => {
   const { handleSubmit, control } = useForm();
@@ -21,9 +22,12 @@ const CategoryCreateForm = () => {
   const [categoryImage, setCategoryImage] = useState({
     thumbnail: "",
   });
+  const router = useRouter();
   const [createCategory, { isLoading, isSuccess, error }] =
     useCreateCategoryMutation();
   useEffect(() => {
+    if (isSuccess) {
+    }
     if (error) {
       //@ts-ignore
       if ("data" in error) {
@@ -35,18 +39,18 @@ const CategoryCreateForm = () => {
     }
   }, [error]);
   const onSubmit = async (data: any) => {
-    // console.log(categoryImage, data);
     try {
       const categoryData = {
         category: data?.location,
         thumbnail: categoryImage?.thumbnail,
       };
-
+      console.log(categoryData);
       const res = await createCategory(categoryData);
       console.log(res);
       //@ts-ignore
       if (res?.data?.category) {
         message.success("Category Created");
+        router.push("/admin/category");
       }
     } catch (error) {}
   };
@@ -99,7 +103,7 @@ const CategoryCreateForm = () => {
             <Grid item xs={12}>
               <input
                 type="file"
-                accept="image/*"
+                accept="image/png, image/jpg, image/jpeg, image/webp"
                 id="file"
                 className="hidden"
                 onChange={handleFileChange}
@@ -123,7 +127,7 @@ const CategoryCreateForm = () => {
                   />
                 ) : (
                   <span className="text-gray-500">
-                    Drag and drop your thumbnail here or click to browse
+                    Drag and drop or click here
                   </span>
                 )}
               </label>
@@ -157,7 +161,7 @@ const CategoryCreateForm = () => {
             color="primary"
             sx={{ marginTop: 2 }}
           >
-            Create Category
+            {isLoading ? "Creating..." : "Create Category"}
           </Button>
         </form>
       </Paper>

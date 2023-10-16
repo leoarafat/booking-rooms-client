@@ -1,28 +1,24 @@
 "use client";
-import * as React from "react";
-import { DataGrid } from "@mui/x-data-grid";
 import ActionBar from "@/components/ui/ActionBar";
-import Link from "next/link";
+import React from "react";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { AiOutlineDelete } from "react-icons/ai";
-import { PiPencilSimpleThin } from "react-icons/pi";
-
-import Swal from "sweetalert2";
-import { format } from "timeago.js";
-import Avatar from "@mui/material/Avatar";
+import Link from "next/link";
+import { DataGrid } from "@mui/x-data-grid";
 import {
-  useCategoriesQuery,
-  useDeleteCategoryMutation,
-} from "@/redux/slices/category/categoryApi";
-//!
-
-//!
-const CategoryList = () => {
+  useDeleteServiceMutation,
+  useServicesQuery,
+} from "@/redux/slices/services/serviceApi";
+import { format } from "timeago.js";
+import { PiPencilSimpleThin } from "react-icons/pi";
+import { AiOutlineDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
+import Avatar from "@mui/material/Avatar";
+const ServiceList = () => {
   //@ts-ignore
-  const { data: categoryData } = useCategoriesQuery();
-
-  const [deleteCategory] = useDeleteCategoryMutation();
+  const { data: serviceData } = useServicesQuery();
+  console.log(serviceData);
+  const [deleteService] = useDeleteServiceMutation();
   //!
   const handleDelete = async (item: any) => {
     try {
@@ -38,10 +34,10 @@ const CategoryList = () => {
       });
 
       if (result.isConfirmed) {
-        const res = await deleteCategory(item.id);
+        const res = await deleteService(item.id);
         //@ts-ignore
         if (res?.data?.name) {
-          Swal.fire("Deleted!", "Category has been deleted.", "success");
+          Swal.fire("Deleted!", "Service has been deleted.", "success");
         }
       }
     } catch (error) {
@@ -52,6 +48,7 @@ const CategoryList = () => {
   //!
   const columns = [
     { field: "id", headerName: "ID", flex: 0.3 },
+    { field: "propertyName", headerName: "Property", flex: 0.5 },
     { field: "category", headerName: "Category", flex: 0.5 },
     { field: "created_at", headerName: "Created At", flex: 0.5 },
     {
@@ -81,7 +78,7 @@ const CategoryList = () => {
       flex: 0.2,
       renderCell: (params: any) => {
         return (
-          <Link href={`/admin/category/edit/${params.id}`}>
+          <Link href={`/admin/service/edit/${params.id}`}>
             <PiPencilSimpleThin className=" text-black" size={20} />
           </Link>
         );
@@ -91,30 +88,30 @@ const CategoryList = () => {
   //!
   //!
   const rows: any[] = [];
-  if (categoryData) {
-    categoryData?.categories?.forEach((item: any) => {
+  if (serviceData) {
+    serviceData?.services?.forEach((item: any) => {
       rows.push({
         id: item.id,
-        category: item.category,
+        propertyName: item?.propertyName,
+        category: item?.category?.category,
         thumbnail: item.thumbnail,
         created_at: format(item.createdAt),
       });
     });
   }
   //!
-
   return (
     <div>
-      <ActionBar title="Category List">
+      <ActionBar title="Service List">
         <input
           type="text"
           placeholder="Search..."
           className={`w-[150px] text-white bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
         />
         <div>
-          <Link href="/admin/category/create">
+          <Link href="/admin/service/create">
             <Button variant="contained" endIcon={<SendIcon />}>
-              Create Category
+              Create Service
             </Button>
           </Link>
         </div>
@@ -136,4 +133,4 @@ const CategoryList = () => {
   );
 };
 
-export default CategoryList;
+export default ServiceList;

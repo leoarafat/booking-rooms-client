@@ -17,7 +17,7 @@ import {
   useUpdateProfileMutation,
 } from "@/redux/slices/user/userApi";
 import { useRouter } from "next/navigation";
-import { message } from "antd";
+import { Spin, message } from "antd";
 
 const UserUpdateForm = ({ params }: any) => {
   const id = params.id;
@@ -51,7 +51,7 @@ const UserUpdateForm = ({ params }: any) => {
   return (
     <>
       {isLoading ? (
-        <p>Loading..</p>
+        <Spin size="large" />
       ) : (
         <Container>
           <Typography variant="h5" gutterBottom>
