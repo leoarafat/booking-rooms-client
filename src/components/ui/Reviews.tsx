@@ -12,6 +12,7 @@ import {
   Box,
 } from "@mui/material";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { useOverviewsQuery } from "@/redux/slices/blog/blogApi";
 
 const reviewsData = [
   {
@@ -44,6 +45,7 @@ const itemsPerPage = 6;
 
 const ReviewCard = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const { data } = useOverviewsQuery({});
 
   const nextSlide = () => {
     if (startIndex + itemsPerPage < reviewsData.length) {
@@ -82,13 +84,16 @@ const ReviewCard = () => {
         </Box>
         <div className="pt-3">
           <Grid container spacing={3}>
-            {reviewsData.map((review, index) => (
+            {data?.data.map((review, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card style={{ backgroundColor: "#003B95", color: "#fff" }}>
                   <CardContent>
-                    <Avatar src={review.image} alt={review.name} />
+                    <Avatar
+                      src={review?.user?.avatar?.url}
+                      alt={review?.user?.name}
+                    />
                     <Typography variant="h6" gutterBottom>
-                      {review.name}
+                      {review?.user?.name}
                     </Typography>
                     <Rating
                       name="rating"

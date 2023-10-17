@@ -16,18 +16,16 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductCard from "../Services/Card";
 import Pagination from "@mui/material/Pagination";
+import { useServicesQuery } from "@/redux/slices/services/serviceApi";
+import { useCategoriesQuery } from "@/redux/slices/category/categoryApi";
 
 const LayoutPage = () => {
   const [price, setPrice] = useState([0, 10000]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [categories, setCategories] = useState([
-    "Category 1",
-    "Category 2",
-    "Category 3",
-    "Category 4",
-    "Category 5",
-  ]);
 
+  const { data: servicesData } = useServicesQuery({});
+  const { data: categoryData } = useCategoriesQuery({});
+  // console.log(categoryData?.categories);
   const handlePriceChange = (event: any, newValue: any) => {
     setPrice(newValue);
   };
@@ -37,7 +35,7 @@ const LayoutPage = () => {
   const handleCategoryChange = (category: string) => {
     console.log(category);
   };
-  console.log(currentPage);
+  // console.log(currentPage);
   return (
     <Container>
       <Grid container spacing={2}>
@@ -62,22 +60,18 @@ const LayoutPage = () => {
             <Typography variant="subtitle1" style={{ marginTop: "16px" }}>
               Categories:
             </Typography>
-
-            <FormControlLabel
-              control={<Checkbox color="primary" />}
-              label="Category 5"
-            />
-            {categories.map((category) => (
-              <FormControlLabel
-                key={category}
-                control={
-                  <Checkbox
-                    color="primary"
-                    onChange={() => handleCategoryChange(category)}
-                  />
-                }
-                label={category}
-              />
+            {categoryData?.categories?.map((category: any) => (
+              <div key={category?._id}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      color="primary"
+                      onChange={() => handleCategoryChange(category?.category)}
+                    />
+                  }
+                  label={category?.category}
+                />
+              </div>
             ))}
             <Typography variant="subtitle1" style={{ marginTop: "16px" }}>
               Price Range:
@@ -112,8 +106,12 @@ const LayoutPage = () => {
               </Paper>
             </Grid>
             <Grid item xs={12}>
-              <ProductCard />
-              <ProductCard />
+              {/* <ProductCard /> */}
+              {servicesData?.services?.map((service) => (
+                <Grid item xs={12} key={service.id}>
+                  <ProductCard service={service} />
+                </Grid>
+              ))}
             </Grid>
           </Grid>
           <div className="flex items-center justify-center bg-gray-100 p-3 my-3 rounded-sm ">

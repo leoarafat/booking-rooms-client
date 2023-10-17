@@ -35,7 +35,7 @@ export const categoryApi = baseApi.injectEndpoints({
           meta,
         };
       },
-      providesTags: [tagTypes.admin],
+      providesTags: [tagTypes.category],
     }),
     //!
     updateCategory: build.mutation({
@@ -52,7 +52,7 @@ export const categoryApi = baseApi.injectEndpoints({
         url: `/category/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: [tagTypes.admin],
+      invalidatesTags: [tagTypes.category],
     }),
   }),
 });

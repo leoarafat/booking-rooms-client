@@ -18,7 +18,7 @@ import { TbBrandGoogleAnalytics } from "react-icons/tb";
 import Link from "next/link";
 import { USER_ROLE } from "./role";
 export const sidebarItems = (role: string) => {
-  const isRole = role.toUpperCase();
+  const isRole = role?.toUpperCase();
   //!
   const defaultSidebarItems: MenuProps["items"] = [
     {
@@ -38,8 +38,18 @@ export const sidebarItems = (role: string) => {
     ...defaultSidebarItems,
 
     {
-      label: <Link href={`/${role}/analytics`}>Analytics</Link>,
-      key: `/${role}/analytics`,
+      label: <Link href={`/${role}/user-analytics`}>User Analytics</Link>,
+      key: `/${role}/user-analytics`,
+      icon: <TbBrandGoogleAnalytics />,
+    },
+    {
+      label: <Link href={`/${role}/service-analytics`}>Service Analytics</Link>,
+      key: `/${role}/service-analytics`,
+      icon: <TbBrandGoogleAnalytics />,
+    },
+    {
+      label: <Link href={`/${role}/booking-analytics`}>Booking Analytics</Link>,
+      key: `/${role}/booking-analytics`,
       icon: <TbBrandGoogleAnalytics />,
     },
 

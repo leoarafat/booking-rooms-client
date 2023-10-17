@@ -9,25 +9,30 @@ import {
   Button,
   Box,
 } from "@mui/material";
+import Rating from "@mui/material/Rating";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
+import CardMedia from "@mui/material/CardMedia";
+import { useServicesQuery } from "@/redux/slices/services/serviceApi";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-const servicesData = [
-  { id: 1, title: "Service 1", description: "Description 1" },
-  { id: 2, title: "Service 2", description: "Description 2" },
-  { id: 3, title: "Service 3", description: "Description 3" },
-  { id: 4, title: "Service 4", description: "Description 4" },
-  { id: 5, title: "Service 5", description: "Description 5" },
-  { id: 6, title: "Service 6", description: "Description 6" },
-  // Add more services as needed
-];
+import Link from "next/link";
 
 const itemsPerPage = 3;
 
 const ServiceSection = () => {
   const [startIndex, setStartIndex] = useState(0);
+  const theme = useTheme();
 
+  //!Available Service Data
+  const { data: availableServiceData } = useServicesQuery({});
+
+  const availableServices = availableServiceData?.services?.filter(
+    (service) => service.availability === "Available"
+  );
   const nextSlide = () => {
-    if (startIndex + itemsPerPage < servicesData.length) {
+    //@ts-ignore
+    if (startIndex + itemsPerPage < availableServices?.length) {
       setStartIndex(startIndex + itemsPerPage);
     }
   };
@@ -49,39 +54,97 @@ const ServiceSection = () => {
           justifyContent="space-between"
         >
           <Button
-            variant="outlined"
+            className="bg-[#1976D2]"
             startIcon={<ArrowBack />}
             onClick={prevSlide}
             disabled={startIndex === 0}
-          ></Button>
+          >
+            Previous
+          </Button>
 
           <Button
-            variant="outlined"
+            className="bg-[#1976D2]"
             endIcon={<ArrowForward />}
             onClick={nextSlide}
-            disabled={startIndex + itemsPerPage >= servicesData.length}
-          ></Button>
+            disabled={
+              startIndex + itemsPerPage >=
+              availableServiceData?.services?.length!
+            }
+          >
+            Next
+          </Button>
         </Box>
         <div className="pt-3">
           <Grid container spacing={3}>
-            {servicesData
-              .slice(startIndex, startIndex + itemsPerPage)
+            {availableServices
+              ?.slice(startIndex, startIndex + itemsPerPage)
               .map((service) => (
                 <Grid item key={service.id} xs={12} sm={6} md={4}>
-                  <Card style={{ backgroundColor: "#003B95", color: "#fff" }}>
+                  <Card
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      height: "100%",
+                      backgroundColor: "#f5f5f5",
+                      border: "1px solid #ddd",
+                    }}
+                  >
+                    <CardMedia
+                      component="img"
+                      sx={{ width: "100%", height: "200px" }}
+                      image={service.thumbnail?.url}
+                      alt={service.propertyName}
+                    />
                     <CardContent>
                       <Typography variant="h6" gutterBottom>
-                        {service.title}
+                        {service.propertyName}
                       </Typography>
-                      <Typography variant="body2">
-                        {service.description}
+                      <Typography variant="body2" color="text.secondary">
+                        Price: ${service.price}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Room: {service.roomTitle}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Bed: {service.bedTitle}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        <LocationOnIcon fontSize="small" /> Location:{" "}
+                        {service.propertyLocation}
                       </Typography>
                     </CardContent>
+                    <Box
+                      sx={{
+                        borderTop: "1px solid #ddd",
+                        padding: "10px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Typography variant="body2">Service Ratings:</Typography>
+                      <Rating
+                        name={`rating-${service.id}`}
+                        value={service.ratings}
+                        readOnly
+                      />
+                    </Box>
                   </Card>
                 </Grid>
               ))}
           </Grid>
         </div>
+        <Link href={"/services"}>
+          {" "}
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginTop: "20px" }}
+          >
+            All Services
+          </Button>
+        </Link>
       </Container>
     </div>
   );

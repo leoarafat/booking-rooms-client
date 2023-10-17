@@ -13,6 +13,16 @@ export const blogApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.blog],
     }),
     //!
+    overView: build.mutation({
+      query: (data) => ({
+        url: `/servey`,
+        method: "POST",
+        data: data,
+      }),
+
+      invalidatesTags: [tagTypes.servey],
+    }),
+    //!
     singleBlog: build.query({
       query: (id: string | string[] | undefined) => ({
         url: `/layouts/blog/${id}`,
@@ -36,6 +46,22 @@ export const blogApi = baseApi.injectEndpoints({
         };
       },
       providesTags: [tagTypes.blog],
+    }),
+    overviews: build.query({
+      query: (arg: Record<string, any>) => {
+        return {
+          url: `/servey/`,
+          method: "GET",
+          params: arg,
+        };
+      },
+      transformResponse: (response: any[], meta: any) => {
+        return {
+          data: response,
+          meta,
+        };
+      },
+      providesTags: [tagTypes.servey],
     }),
     //!
     updateBlog: build.mutation({
@@ -86,4 +112,6 @@ export const {
   useUpdateBlogMutation,
   useCreateFaqMutation,
   useFaqsQuery,
+  useOverViewMutation,
+  useOverviewsQuery,
 } = blogApi;
