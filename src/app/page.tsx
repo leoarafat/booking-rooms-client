@@ -1,5 +1,8 @@
+import AllCategory from "@/components/Category/AllCategory";
+import AvailableServiceSection from "@/components/Services/AvailabeService";
 import Header from "@/components/layouts/Header";
 import Hero from "@/components/ui/Hero";
+import OverviewForm from "@/components/ui/OverView";
 import Heading from "@/utils/Heading";
 import dynamic from "next/dynamic";
 
@@ -13,6 +16,9 @@ const RootPage = () => {
       />
       <Header />
       <Hero />
+      <AvailableServiceSection />
+      <AllCategory />
+      <OverviewForm />
     </div>
   );
 };
