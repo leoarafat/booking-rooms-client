@@ -23,7 +23,7 @@ const servicesData = [
 
 const itemsPerPage = 3;
 
-const ServiceSection = () => {
+const UpComingService = () => {
   const [startIndex, setStartIndex] = useState(0);
 
   const nextSlide = () => {
@@ -41,7 +41,7 @@ const ServiceSection = () => {
   return (
     <div className="py-3">
       <Container>
-        <Typography variant="h5">Available Services</Typography>
+        <Typography variant="h5">Upcoming Services</Typography>
         <Box
           display="flex"
           justifyItems={"justify-center"}
@@ -87,4 +87,4 @@ const ServiceSection = () => {
   );
 };
 
-export default ServiceSection;
+export default UpComingService;

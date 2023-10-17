@@ -21,7 +21,7 @@ const servicesData = [
   // Add more services as needed
 ];
 
-const itemsPerPage = 3;
+const itemsPerPage = 6;
 
 const AllCategory = () => {
   const [startIndex, setStartIndex] = useState(0);
@@ -41,6 +41,9 @@ const AllCategory = () => {
   return (
     <div className="py-3">
       <Container>
+        <Typography variant="h5">Explore Bangladesh</Typography>
+        <Typography>These popular destinations have a lot to offer</Typography>
+
         <Box
           display="flex"
           justifyItems={"justify-center"}
@@ -53,12 +56,7 @@ const AllCategory = () => {
             onClick={prevSlide}
             disabled={startIndex === 0}
           ></Button>
-          <div className="flex flex-col text-center">
-            <Typography variant="h5">Explore Bangladesh</Typography>
-            <Typography variant="h6">
-              These popular destinations have a lot to offer
-            </Typography>
-          </div>
+
           <Button
             variant="outlined"
             endIcon={<ArrowForward />}

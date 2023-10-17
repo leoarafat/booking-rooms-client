@@ -25,15 +25,18 @@ const OverviewForm = () => {
   const handleCommentChange = (event: any) => {
     setComment(event.target.value);
   };
-  console.log({ userRatings: rating, comment });
+  // console.log({ userRatings: rating, comment });
   return (
     <Container>
+      <Typography variant="h5" gutterBottom>
+        We would appreciate if you can take a couple of minutes to evaluate how
+        we are doing
+      </Typography>
       <Paper elevation={3} style={{ padding: "20px" }}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <Card>
               <CardContent>
-                {/* Add your image here */}
                 <Box
                   display="flex"
                   alignItems="center"
@@ -51,10 +54,10 @@ const OverviewForm = () => {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant="h5" gutterBottom>
+            {/* <Typography variant="h5" gutterBottom>
               We would appreciate if you can take a couple of minutes to
               evaluate how we are doing
-            </Typography>
+            </Typography> */}
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Typography variant="subtitle1" gutterBottom>

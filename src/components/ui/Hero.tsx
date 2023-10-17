@@ -228,7 +228,11 @@ function HeroSection() {
                 </h6>
                 <ul
                   aria-labelledby="dropdownDefault"
-                  style={{ display: "block", padding: "0", listStyle: "none" }}
+                  style={{
+                    display: "block",
+                    padding: "0",
+                    listStyle: "none",
+                  }}
                 >
                   <li
                     style={{
