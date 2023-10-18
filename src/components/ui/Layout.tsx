@@ -12,14 +12,18 @@ import {
   Slider,
 } from "@mui/material";
 import dynamic from "next/dynamic";
-import Image from "next/image";
-import Link from "next/link";
+
 import ProductCard from "../Services/Card";
 import Pagination from "@mui/material/Pagination";
 import { useServicesQuery } from "@/redux/slices/services/serviceApi";
 import { useCategoriesQuery } from "@/redux/slices/category/categoryApi";
 
+import { useSearchParams } from "next/navigation";
+
 const LayoutPage = () => {
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category");
+  // console.log(category);
   const [price, setPrice] = useState([0, 10000]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -35,7 +39,7 @@ const LayoutPage = () => {
   const handleCategoryChange = (category: string) => {
     console.log(category);
   };
-  // console.log(currentPage);
+
   return (
     <Container>
       <Grid container spacing={2}>
@@ -107,7 +111,7 @@ const LayoutPage = () => {
             </Grid>
             <Grid item xs={12}>
               {/* <ProductCard /> */}
-              {servicesData?.services?.map((service) => (
+              {servicesData?.services?.map((service: any) => (
                 <Grid item xs={12} key={service.id}>
                   <ProductCard service={service} />
                 </Grid>

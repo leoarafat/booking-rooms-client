@@ -13,12 +13,22 @@ export const serviceApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.service],
     }),
     //!
+    addToCart: build.mutation({
+      query: (data) => ({
+        url: `/services/addToCart`,
+        method: "POST",
+        data: data,
+      }),
+
+      invalidatesTags: [tagTypes.cart],
+    }),
+    //!
     singleService: build.query({
       query: (id: string | string[] | undefined) => ({
         url: `/services/${id}`,
         method: "GET",
       }),
-      providesTags: [tagTypes.service],
+      providesTags: [tagTypes.service, tagTypes.comment, tagTypes.review],
     }),
     //!
     services: build.query({
@@ -54,6 +64,24 @@ export const serviceApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [tagTypes.service],
     }),
+    addComment: build.mutation({
+      query: (data) => ({
+        url: `services/${data.id}/add-comment`,
+        method: "PUT",
+        data: data,
+      }),
+
+      invalidatesTags: [tagTypes.comment],
+    }),
+    addReview: build.mutation({
+      query: (data) => ({
+        url: `services/${data.id}/add-review`,
+        method: "PUT",
+        data: data,
+      }),
+
+      invalidatesTags: [tagTypes.review],
+    }),
   }),
 });
 
@@ -63,4 +91,7 @@ export const {
   useServicesQuery,
   useSingleServiceQuery,
   useUpdateServiceMutation,
+  useAddToCartMutation,
+  useAddCommentMutation,
+  useAddReviewMutation,
 } = serviceApi;

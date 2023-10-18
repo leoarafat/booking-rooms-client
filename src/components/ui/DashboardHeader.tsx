@@ -3,6 +3,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { getUserInfo, removeUserInfo } from "@/services/auth.service";
 import { authKey } from "@/constants/storageKey";
 import { useRouter } from "next/navigation";
+import { useLoadUserQuery } from "@/redux/slices/user/userApi";
 const { Header: AntHeader } = Layout;
 
 const Header = () => {
@@ -25,8 +26,9 @@ const Header = () => {
   ];
   // const user = getUserInfo() as any;
   // console.log(user);
-  const { role } = getUserInfo() as any;
-  console.log(role);
+  const { role, userId } = getUserInfo() as any;
+  const { data } = useLoadUserQuery(userId);
+  console.log(data);
 
   // const role = "admin";
   return (
@@ -54,7 +56,7 @@ const Header = () => {
         <Dropdown menu={{ items }}>
           <a>
             <Space wrap size={16}>
-              <Avatar size="large" icon={<UserOutlined />} />
+              <Avatar size="large" src={data?.avatar?.url} />
             </Space>
           </a>
         </Dropdown>

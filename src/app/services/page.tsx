@@ -1,9 +1,10 @@
 import Header from "@/components/layouts/Header";
 import LayoutPage from "@/components/ui/Layout";
 import Heading from "@/utils/Heading";
+import dynamic from "next/dynamic";
 import React from "react";
 
-const page = () => {
+const Pages = () => {
   return (
     <div className="">
       <Heading
@@ -17,4 +18,6 @@ const page = () => {
   );
 };
 
-export default page;
+export default dynamic(() => Promise.resolve(Pages), {
+  ssr: false,
+});
