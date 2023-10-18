@@ -58,7 +58,7 @@ function PropertyForm() {
         bedTitle: data?.bedTitle,
         price: Number(data?.price),
         propertyDetails: data?.propertyDetails,
-        availability: data?.availability,
+
         numberOfGuest: data?.numberOfGuest,
         houseRules: data?.houseRules,
         facilities: data?.facilities,
@@ -197,23 +197,7 @@ function PropertyForm() {
                 )}
               />
             </Grid>
-            <Grid item xs={6}>
-              <Controller
-                name="availability"
-                control={control}
-                defaultValue="Available"
-                rules={{ required: "Availability is required" }}
-                render={({ field }) => (
-                  <FormControl fullWidth variant="outlined">
-                    <InputLabel>Availability</InputLabel>
-                    <Select {...field}>
-                      <MenuItem value="Available">Available</MenuItem>
-                      <MenuItem value="Unavailable">Unavailable</MenuItem>
-                    </Select>
-                  </FormControl>
-                )}
-              />
-            </Grid>
+
             <Grid item xs={6}>
               <Controller
                 name="numberOfGuest"
@@ -230,7 +214,7 @@ function PropertyForm() {
                 )}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <Controller
                 name="status"
                 control={control}

@@ -57,6 +57,7 @@ import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
 import { Container, Typography } from "@mui/material";
 import { useCategoriesQuery } from "@/redux/slices/category/categoryApi";
+import Link from "next/link";
 
 export default function TrendingDestination() {
   const { data: categoryData } = useCategoriesQuery({});
@@ -71,12 +72,15 @@ export default function TrendingDestination() {
         <ImageListItem key="Subheader" cols={2}></ImageListItem>
         {categoriesToDisplay?.map((category: any) => (
           <ImageListItem key={category._id}>
-            <img
-              srcSet={`${category?.thumbnail?.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              src={`${category?.thumbnail?.url}?w=248&fit=crop&auto=format`}
-              alt={category?.category}
-              loading="lazy"
-            />
+            <Link href={`/services?category=${category?._id}`}>
+              {" "}
+              <img
+                srcSet={`${category?.thumbnail?.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                src={`${category?.thumbnail?.url}?w=248&fit=crop&auto=format`}
+                alt={category?.category}
+                loading="lazy"
+              />
+            </Link>
             <ImageListItemBar
               title={category?.category}
               actionIcon={

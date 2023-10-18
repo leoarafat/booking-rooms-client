@@ -53,6 +53,7 @@ const CategoryList = () => {
   const columns = [
     { field: "id", headerName: "ID", flex: 0.3 },
     { field: "category", headerName: "Category", flex: 0.5 },
+    { field: "services", headerName: "Properties", flex: 0.5 },
     { field: "created_at", headerName: "Created At", flex: 0.5 },
     {
       field: "thumbnail",
@@ -96,6 +97,7 @@ const CategoryList = () => {
       rows.push({
         id: item.id,
         category: item.category,
+        services: item?.services?.length + " " + "property",
         thumbnail: item.thumbnail,
         created_at: format(item.createdAt),
       });

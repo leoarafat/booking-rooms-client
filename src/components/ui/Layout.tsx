@@ -19,22 +19,50 @@ import { useServicesQuery } from "@/redux/slices/services/serviceApi";
 import { useCategoriesQuery } from "@/redux/slices/category/categoryApi";
 
 import { useSearchParams } from "next/navigation";
+import { useDebounced } from "@/redux/hooks";
 
 const LayoutPage = () => {
   const searchParams = useSearchParams();
-  const category = searchParams.get("category");
+  const categoryId = searchParams.get("category");
   // console.log(category);
+  const query: Record<string, any> = {};
+  //! state and query
+  const [page, setPage] = useState<number>(1);
+  const [size, setSize] = useState<number>(3);
+  const [sortBy, setSortBy] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   const [price, setPrice] = useState([0, 10000]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data: servicesData } = useServicesQuery({});
+  //! set query for filter and search
+  query["limit"] = size;
+  query["page"] = page;
+  query["sortBy"] = sortBy;
+  query["sortOrder"] = sortOrder;
+
+  if (categoryId) {
+    query["category"] = categoryId;
+  }
+  const debouncedSearchTerm = useDebounced({
+    searchQuery: searchTerm,
+    delay: 600,
+  });
+  if (debouncedSearchTerm) {
+    query["searchTerm"] = debouncedSearchTerm;
+  }
+  //! set query done
+
+  const { data: servicesData } = useServicesQuery({ ...query });
+  console.log(servicesData);
   const { data: categoryData } = useCategoriesQuery({});
   // console.log(categoryData?.categories);
   const handlePriceChange = (event: any, newValue: any) => {
     setPrice(newValue);
   };
   const handlePageChange = (event: any, page: number) => {
-    setCurrentPage(page);
+    setPage(page);
   };
   const handleCategoryChange = (category: string) => {
     console.log(category);
@@ -105,6 +133,7 @@ const LayoutPage = () => {
                     variant="outlined"
                     fullWidth
                     size="small"
+                    onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
               </Paper>
@@ -121,7 +150,7 @@ const LayoutPage = () => {
           <div className="flex items-center justify-center bg-gray-100 p-3 my-3 rounded-sm ">
             <Pagination
               //   onChange={(e) => setPage(e.target.value)}
-              count={10}
+              count={servicesData?.meta?.total}
               color="primary"
               page={currentPage}
               onChange={handlePageChange}

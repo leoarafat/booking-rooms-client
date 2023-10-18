@@ -93,7 +93,7 @@ const AllCategory = () => {
                         </Typography>
                         <Typography variant="body2">
                           {category?.services?.length === 0
-                            ? 1
+                            ? 0
                             : category?.services?.length}{" "}
                           (Property)
                         </Typography>

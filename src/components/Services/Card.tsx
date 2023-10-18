@@ -63,7 +63,7 @@ const Card = ({ service }: any) => {
                   <div className="my-1">
                     <Rating
                       name="rating"
-                      value={ratings}
+                      value={ratings ? ratings : 4}
                       precision={0.5}
                       readOnly
                     />
