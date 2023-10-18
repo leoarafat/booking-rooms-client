@@ -12,18 +12,21 @@ import {
   Slider,
 } from "@mui/material";
 import dynamic from "next/dynamic";
-
+import Alert from "@mui/material/Alert";
 import ProductCard from "../Services/Card";
 import Pagination from "@mui/material/Pagination";
 import { useServicesQuery } from "@/redux/slices/services/serviceApi";
 import { useCategoriesQuery } from "@/redux/slices/category/categoryApi";
 
 import { useSearchParams } from "next/navigation";
-import { useDebounced } from "@/redux/hooks";
+import { useDebounced, useMinMaxDebounced } from "@/redux/hooks";
 
 const LayoutPage = () => {
   const searchParams = useSearchParams();
   const categoryId = searchParams.get("category");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [error, setError] = useState("");
   // console.log(category);
   const query: Record<string, any> = {};
   //! state and query
@@ -32,15 +35,25 @@ const LayoutPage = () => {
   const [sortBy, setSortBy] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [searchTerm, setSearchTerm] = useState<string>("");
-
+  const [serviceCategory, setServiceCategory] = useState<string>("");
   const [price, setPrice] = useState([0, 10000]);
-  const [currentPage, setCurrentPage] = useState(1);
 
   //! set query for filter and search
   query["limit"] = size;
   query["page"] = page;
   query["sortBy"] = sortBy;
   query["sortOrder"] = sortOrder;
+
+  if (minPrice) {
+    query["minPrice"] = minPrice;
+  }
+  if (maxPrice) {
+    query["maxPrice"] = maxPrice;
+  }
+
+  if (serviceCategory) {
+    query["category"] = serviceCategory;
+  }
 
   if (categoryId) {
     query["category"] = categoryId;
@@ -55,7 +68,7 @@ const LayoutPage = () => {
   //! set query done
 
   const { data: servicesData } = useServicesQuery({ ...query });
-  console.log(servicesData);
+
   const { data: categoryData } = useCategoriesQuery({});
   // console.log(categoryData?.categories);
   const handlePriceChange = (event: any, newValue: any) => {
@@ -65,7 +78,33 @@ const LayoutPage = () => {
     setPage(page);
   };
   const handleCategoryChange = (category: string) => {
-    console.log(category);
+    setServiceCategory(category);
+  };
+  const handleMinPriceChange = (e: any) => {
+    const numericValue = parseFloat(e.target.value);
+    if (!isNaN(numericValue)) {
+      //@ts-ignore
+      setMinPrice(numericValue);
+      setError(""); // Clear any previous error
+    } else {
+      setMinPrice("");
+      setError("Please enter a valid number");
+    }
+  };
+  const handleMaxPriceChange = (e: any) => {
+    const numericValue = parseFloat(e.target.value);
+    if (!isNaN(numericValue)) {
+      //@ts-ignore
+      setMaxPrice(numericValue);
+      setError(""); // Clear any previous error
+    } else {
+      setMaxPrice("");
+      setError("Please enter a valid number");
+    }
+  };
+  const handleClearPrice = () => {
+    setMinPrice("");
+    setMaxPrice("");
   };
 
   return (
@@ -77,28 +116,54 @@ const LayoutPage = () => {
             <Typography variant="h6" gutterBottom>
               Filters
             </Typography>
-            <TextField
-              label="Min Price"
-              variant="outlined"
-              fullWidth
-              size="small"
-            />
+            <div className="pb-1">
+              <TextField
+                label="Min Price"
+                variant="outlined"
+                value={minPrice}
+                fullWidth
+                size="small"
+                type="number"
+                onChange={handleMinPriceChange}
+              />
+              {error && <Alert severity="error">{error}</Alert>}
+            </div>
             <TextField
               label="Max Price"
               variant="outlined"
               fullWidth
               size="small"
+              type="number"
+              value={maxPrice}
+              onChange={handleMaxPriceChange}
             />
+            {error && <Alert severity="error">{error}</Alert>}
+            <div className="pt-2">
+              <Button
+                onClick={handleClearPrice}
+                variant="contained"
+                className="bg-[#1976D2] "
+                fullWidth
+              >
+                Clear
+              </Button>
+            </div>
             <Typography variant="subtitle1" style={{ marginTop: "16px" }}>
               Categories:
             </Typography>
-            {categoryData?.categories?.map((category: any) => (
+            <FormControlLabel
+              onClick={() => setServiceCategory("")}
+              control={<Checkbox />}
+              label="All"
+            />
+            {categoryData?.categories?.map((category) => (
               <div key={category?._id}>
                 <FormControlLabel
                   control={
                     <Checkbox
                       color="primary"
-                      onChange={() => handleCategoryChange(category?.category)}
+                      checked={category?._id === serviceCategory}
+                      onChange={() => handleCategoryChange(category?._id)}
                     />
                   }
                   label={category?.category}
@@ -149,10 +214,9 @@ const LayoutPage = () => {
           </Grid>
           <div className="flex items-center justify-center bg-gray-100 p-3 my-3 rounded-sm ">
             <Pagination
-              //   onChange={(e) => setPage(e.target.value)}
               count={servicesData?.meta?.total}
               color="primary"
-              page={currentPage}
+              page={page}
               onChange={handlePageChange}
             />
           </div>

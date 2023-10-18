@@ -1,127 +1,175 @@
 "use client";
-import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
-import Paper from "@mui/material/Paper";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import Button from "@mui/material/Button";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
-import AddressForm from "@/components/Checkout/AddressFor";
-import PaymentForm from "@/components/Checkout/PaymentForm";
-import Review from "@/components/Checkout/Review";
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  Paper,
+  Typography,
+  Grid,
+  Button,
+  TextField,
+  MenuItem,
+} from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
+import Header from "@/components/layouts/Header";
+import { useRouter } from "next/navigation";
+import { useCreateBookingMutation } from "@/redux/slices/services/bookingApi";
+import { useSingleServiceQuery } from "@/redux/slices/services/serviceApi";
+import { Spin, message } from "antd";
+const rooms = [
+  { value: 1, label: "1" },
+  { value: 2, label: "2" },
+  { value: 3, label: "3" },
+  { value: 4, label: "4" },
+  { value: 5, label: "5" },
+];
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+function CheckoutForm({ searchParams }: Record<string, any>) {
+  const { id, userId } = searchParams;
+  const [selectedRoom, setSelectedRoom] = useState("");
+  const [createBooking, { isLoading: bookingLoading, error }] =
+    useCreateBookingMutation();
+  const { data: serviceData, isLoading } = useSingleServiceQuery(id);
+  const router = useRouter();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
+  useEffect(() => {
+    if (error) {
+      //@ts-ignore
+      if ("data" in error) {
+        const errorData = error as any;
+        message.error(errorData.data.message);
+      } else {
+        console.error("Login error:", error);
+      }
+    }
+  }, [error]);
+  const onSubmit = async (data: any) => {
+    try {
+      const formData = {
+        serviceId: id,
+        userId,
+        startDate: data?.startDate,
+        endDate: data?.endDate,
+        room: selectedRoom,
+      };
 
-const steps = ["Shipping address", "Payment details", "Review your order"];
-
-function getStepContent(step: number) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error("Unknown step");
-  }
-}
-
-export default function Checkout() {
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+      const res = await createBooking(formData);
+      //@ts-ignore
+      if (res?.data?._id) {
+        message.success("successfully Bokings");
+        router.push(`/success?serviceId=${id}`);
+      }
+    } catch (error) {}
   };
 
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
-
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: "relative",
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper
-          variant="outlined"
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
-        >
-          <Typography component="h1" variant="h4" align="center">
-            Checkout
-          </Typography>
-          <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          {activeStep === steps.length ? (
-            <React.Fragment>
-              <Typography variant="h5" gutterBottom>
-                Thank you for your order.
+    <>
+      {isLoading ? (
+        <Spin size="large" />
+      ) : (
+        <>
+          {" "}
+          <Header />
+          <Container maxWidth="md">
+            <Paper elevation={3} style={{ padding: "20px" }}>
+              <Typography variant="h6" gutterBottom>
+                {serviceData?.propertyName}
               </Typography>
-              <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
-                confirmation, and will send you an update when your order has
-                shipped.
-              </Typography>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              {getStepContent(activeStep)}
-              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                {activeStep !== 0 && (
-                  <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="startDate"
+                      control={control}
+                      rules={{ required: true }}
+                      render={({ field }) => (
+                        <TextField
+                          required
+                          label="Start Date"
+                          type="date"
+                          fullWidth
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                    {errors.startDate && <span>This field is required</span>}
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <Controller
+                      name="endDate"
+                      control={control}
+                      rules={{ required: true }}
+                      render={({ field }) => (
+                        <TextField
+                          required
+                          label="End Date"
+                          type="date"
+                          fullWidth
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          {...field}
+                        />
+                      )}
+                    />
+                    {errors.endDate && <span>This field is required</span>}
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Controller
+                      name="room"
+                      control={control}
+                      rules={{ required: true }}
+                      render={({ field }) => (
+                        <TextField
+                          select
+                          required
+                          label="Room Number"
+                          fullWidth
+                          {...field}
+                          value={selectedRoom}
+                          onChange={(event) => {
+                            setSelectedRoom(event.target.value);
+                            field.onChange(event); // This line is important to update the form state
+                          }}
+                        >
+                          {rooms.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                      )}
+                    />
+                    {errors.room && <span>This field is required</span>}
+                  </Grid>
+                </Grid>
+                <div className="py-2">
+                  <Button
+                    className="bg-[#1976D2]"
+                    type="submit"
+                    variant="contained"
+                  >
+                    {bookingLoading ? "Submiting..." : "Submit"}
                   </Button>
-                )}
-                <Button
-                  variant="contained"
-                  className="bg-[#1565C0]"
-                  onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
-                >
-                  {activeStep === steps.length - 1 ? "Place order" : "Next"}
-                </Button>
-              </Box>
-            </React.Fragment>
-          )}
-        </Paper>
-        <Copyright />
-      </Container>
-    </React.Fragment>
+                </div>
+              </form>
+              <Typography variant="h6" gutterBottom>
+                Total Price: {serviceData?.price}
+              </Typography>
+            </Paper>
+          </Container>
+        </>
+      )}
+    </>
   );
 }
+
+export default CheckoutForm;

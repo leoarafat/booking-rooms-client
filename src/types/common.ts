@@ -32,3 +32,4 @@ export const LocationEnum = [
   "Gazipur",
   "Khulna",
 ];
+export const StatusEnum = ["pending", "accepted", "rejected"];

@@ -11,6 +11,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { getUserInfo } from "@/services/auth.service";
 import { useAddToCartMutation } from "@/redux/slices/services/serviceApi";
 import { message } from "antd";
+import Link from "next/link";
 
 const ReservedCard = ({ id }: any) => {
   const { userId } = getUserInfo() as any;
@@ -63,9 +64,12 @@ const ReservedCard = ({ id }: any) => {
         )}
         <div className="pt-3">
           {userId ? (
-            <Button variant="contained" className="bg-[#1976D2] " fullWidth>
-              Reserve
-            </Button>
+            <Link href={`/checkout?id=${id}&userId=${userId}`}>
+              {" "}
+              <Button variant="contained" className="bg-[#1976D2] " fullWidth>
+                Reserve
+              </Button>
+            </Link>
           ) : (
             <Button variant="contained" className="bg-[#1976D2] " fullWidth>
               Login to access booking

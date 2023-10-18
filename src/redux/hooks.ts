@@ -10,6 +10,10 @@ interface IDebounced {
   searchQuery: string;
   delay: number;
 }
+interface IMinMaxDebounced {
+  minMax: number;
+  delay: number;
+}
 
 export const useDebounced = ({ searchQuery, delay }: IDebounced) => {
   const [debouncedValue, setDebouncedValue] = useState<string>(searchQuery);
@@ -23,6 +27,21 @@ export const useDebounced = ({ searchQuery, delay }: IDebounced) => {
       clearTimeout(handler);
     };
   }, [searchQuery, delay]);
+
+  return debouncedValue;
+};
+export const useMinMaxDebounced = ({ minMax, delay }: IMinMaxDebounced) => {
+  const [debouncedValue, setDebouncedValue] = useState<number>(minMax);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(minMax);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [minMax, delay]);
 
   return debouncedValue;
 };

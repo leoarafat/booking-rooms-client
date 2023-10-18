@@ -2,36 +2,34 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import ActionBar from "@/components/ui/ActionBar";
+import Link from "next/link";
 import Button from "@mui/material/Button";
-
-import { FcCancel } from "react-icons/fc";
+import SendIcon from "@mui/icons-material/Send";
+import { AiOutlineDelete } from "react-icons/ai";
+import { PiPencilSimpleThin } from "react-icons/pi";
 
 import Swal from "sweetalert2";
 import { format } from "timeago.js";
+import Avatar from "@mui/material/Avatar";
 
 import {
   useBlogsQuery,
   useDeleteBlogMutation,
 } from "@/redux/slices/blog/blogApi";
-import {
-  useBookingQuery,
-  useCancelBookingMutation,
-} from "@/redux/slices/services/bookingApi";
 //!
 
 //!
-const BookingList = () => {
+const BlogList = () => {
   //@ts-ignore
+  const { data: blogData } = useBlogsQuery({});
 
-  const { data: bookingData } = useBookingQuery({});
-
-  const [cancelBooking] = useCancelBookingMutation();
+  const [deleteBlog] = useDeleteBlogMutation();
   //!
   const handleDelete = async (item: any) => {
     try {
       const result = await Swal.fire({
         title: "Delete Item",
-        text: "Are you sure you want to cancel booking?",
+        text: "Are you sure you want to delete this account?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes, delete it!",
@@ -41,11 +39,10 @@ const BookingList = () => {
       });
 
       if (result.isConfirmed) {
-        const res = await cancelBooking(item.id);
-        console.log(res);
+        const res = await deleteBlog(item.id);
         //@ts-ignore
-        if (res?.data?._id) {
-          Swal.fire("Canceled!", "Booking has been deleted.", "success");
+        if (res?.data?.title) {
+          Swal.fire("Deleted!", "Blog has been deleted.", "success");
         }
       }
     } catch (error) {
@@ -56,21 +53,39 @@ const BookingList = () => {
   //!
   const columns = [
     { field: "id", headerName: "ID", flex: 0.3 },
-    { field: "startDate", headerName: "Start Date", flex: 0.5 },
-    { field: "endDate", headerName: "End Date", flex: 0.5 },
-    { field: "totalPrice", headerName: "Total Price", flex: 0.5 },
-    { field: "status", headerName: "Status", flex: 0.5 },
+    { field: "title", headerName: "Title", flex: 0.5 },
+    { field: "description", headerName: "Description", flex: 0.5 },
     { field: "created_at", headerName: "Created At", flex: 0.5 },
+    {
+      field: "avatar",
+      headerName: "Image",
+      flex: 0.3,
+      renderCell: (params: any) => (
+        <Avatar alt={params.row.title} src={params.row.avatar.url} />
+      ),
+    },
 
     {
       field: " ",
-      headerName: "Cancel",
+      headerName: "Delete",
       flex: 0.2,
       renderCell: (params: any) => {
         return (
           <Button onClick={() => handleDelete(params)}>
-            <FcCancel size={20} />
+            <AiOutlineDelete className=" text-black" size={20} />
           </Button>
+        );
+      },
+    },
+    {
+      field: "  ",
+      headerName: "Edit",
+      flex: 0.2,
+      renderCell: (params: any) => {
+        return (
+          <Link href={`/admin/blog/edit/${params.id}`}>
+            <PiPencilSimpleThin className=" text-black" size={20} />
+          </Link>
         );
       },
     },
@@ -78,15 +93,14 @@ const BookingList = () => {
   //!
   //!
   const rows: any[] = [];
-  if (bookingData) {
+  if (blogData) {
     //@ts-ignore
-    bookingData?.forEach((item: any) => {
+    blogData?.blogs?.data?.forEach((item: any) => {
       rows.push({
         id: item.id,
-        startDate: item.startDate,
-        endDate: item.endDate,
-        totalPrice: item.totalPrice,
-        status: item.status,
+        title: item.title,
+        description: item.description,
+        avatar: item.avatar,
         created_at: format(item.createdAt),
       });
     });
@@ -95,12 +109,19 @@ const BookingList = () => {
 
   return (
     <div>
-      <ActionBar title="Booking List">
+      <ActionBar title="Blog List">
         <input
           type="text"
           placeholder="Search..."
           className={`w-[150px] text-white bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
         />
+        <div>
+          <Link href="/admin/blog/create">
+            <Button variant="contained" endIcon={<SendIcon />}>
+              Create Blog
+            </Button>
+          </Link>
+        </div>
       </ActionBar>
       <div className="bg-white" style={{ height: 400, width: "100%" }}>
         <DataGrid
@@ -119,4 +140,4 @@ const BookingList = () => {
   );
 };
 
-export default BookingList;
+export default BlogList;

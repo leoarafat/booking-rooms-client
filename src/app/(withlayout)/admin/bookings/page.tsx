@@ -14,16 +14,20 @@ import {
   useDeleteBlogMutation,
 } from "@/redux/slices/blog/blogApi";
 import {
+  useAllBookingsQuery,
   useBookingQuery,
   useCancelBookingMutation,
 } from "@/redux/slices/services/bookingApi";
+import Link from "next/link";
+import { PiPencilSimpleThin } from "react-icons/pi";
 //!
 
 //!
 const BookingList = () => {
   //@ts-ignore
 
-  const { data: bookingData } = useBookingQuery({});
+  const { data: bookingData } = useAllBookingsQuery({});
+  //   console.log(bookingData);
 
   const [cancelBooking] = useCancelBookingMutation();
   //!
@@ -63,14 +67,14 @@ const BookingList = () => {
     { field: "created_at", headerName: "Created At", flex: 0.5 },
 
     {
-      field: " ",
-      headerName: "Cancel",
+      field: "  ",
+      headerName: "Edit",
       flex: 0.2,
       renderCell: (params: any) => {
         return (
-          <Button onClick={() => handleDelete(params)}>
-            <FcCancel size={20} />
-          </Button>
+          <Link href={`/admin/bookings/edit/${params.id}`}>
+            <PiPencilSimpleThin className=" text-black" size={20} />
+          </Link>
         );
       },
     },
@@ -80,7 +84,7 @@ const BookingList = () => {
   const rows: any[] = [];
   if (bookingData) {
     //@ts-ignore
-    bookingData?.forEach((item: any) => {
+    bookingData?.data?.forEach((item: any) => {
       rows.push({
         id: item.id,
         startDate: item.startDate,
