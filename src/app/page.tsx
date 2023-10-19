@@ -4,6 +4,7 @@ import UpComingService from "@/components/Services/UpcommingService";
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/ui/Footer";
 import Hero from "@/components/ui/Hero";
+import LatestNews from "@/components/ui/LatestNews";
 import OfferSection from "@/components/ui/OffersSection";
 import OverviewForm from "@/components/ui/OverView";
 import UserReviews from "@/components/ui/Reviews";
@@ -28,6 +29,7 @@ const RootPage = () => {
       <AllCategory />
       <OverviewForm />
       <UserReviews />
+      <LatestNews />
       <Footer />
     </div>
   );

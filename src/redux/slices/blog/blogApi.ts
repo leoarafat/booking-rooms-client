@@ -92,14 +92,14 @@ export const blogApi = baseApi.injectEndpoints({
     }),
     //!
     faqs: build.query({
-      query: (arg: Record<string, any>) => {
+      query: () => {
         return {
           url: `layouts/faq`,
           method: "GET",
         };
       },
 
-      providesTags: [tagTypes.blog],
+      providesTags: [tagTypes.faq],
     }),
   }),
 });

@@ -84,11 +84,7 @@ export const sidebarItems = (role: string) => {
           key: `/${role}/faq`,
           icon: <QuizIcon />,
         },
-        {
-          label: <Link href={`/${role}/hero`}>Hero Sections</Link>,
-          key: `/${role}/hero`,
-          icon: <SwitcherOutlined />,
-        },
+
         {
           label: <Link href={`/${role}/blog`}>Blog Post</Link>,
           key: `/${role}/blog`,

@@ -15,7 +15,6 @@ const Profile = () => {
 
   return (
     <div className="w-full h-full bg-transparent mt-[80px]">
-      {/* <ProfileInfo user={user} avatar={avatar} /> */}
       <UserProfile user={data} avatar={avatar} />
     </div>
   );

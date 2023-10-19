@@ -61,7 +61,7 @@ const ReviewCard = () => {
   return (
     <div className="py-3">
       <Container>
-        <Typography variant="h5">User Reviews</Typography>
+        <Typography variant="h5">Client Reviews</Typography>
         <Box
           display="flex"
           justifyItems={"justify-center"}

@@ -30,7 +30,6 @@ const FaqList = () => {
         id: item._id,
         question: item.question,
         answer: item.answer,
-
         created_at: format(item.createdAt),
       });
     });

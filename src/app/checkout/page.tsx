@@ -12,7 +12,10 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import Header from "@/components/layouts/Header";
 import { useRouter } from "next/navigation";
-import { useCreateBookingMutation } from "@/redux/slices/services/bookingApi";
+import {
+  useBookingQuery,
+  useCreateBookingMutation,
+} from "@/redux/slices/services/bookingApi";
 import { useSingleServiceQuery } from "@/redux/slices/services/serviceApi";
 import { Spin, message } from "antd";
 
@@ -30,6 +33,7 @@ function CheckoutForm({ searchParams }: any) {
   const [createBooking, { isLoading: bookingLoading, error }] =
     useCreateBookingMutation();
   const { data: serviceData, isLoading } = useSingleServiceQuery(id);
+
   const router = useRouter();
   const {
     control,
