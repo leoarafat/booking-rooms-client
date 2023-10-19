@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import avatarIcon from "../../../public/assets/user.png";
 type Props = {
-  avatar: string | null;
+  avatar: any;
   user: any;
 };
 const UserProfile = ({ user, avatar }: Props) => {
@@ -18,13 +18,10 @@ const UserProfile = ({ user, avatar }: Props) => {
           className="w-full h-[300px] mx-auto mb-4 object-cover"
         />
         <h2 className="text-3xl font-semibold text-gray-100">{user?.name}</h2>
-        <p className="text-gray-100 text-lg">{user?.role}</p>
+        <p className="text-gray-100 text-lg">Role: {user?.role}</p>
       </div>
-      <div className="mt-4">
-        <p className="text-gray-100">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec
-          ultricies velit. Nunc at ex non lorem cursus accumsan.
-        </p>
+      <div className="mt-4 text-center ">
+        <p className="text-gray-100">Hey dear {user?.name} ! Welcome back</p>
       </div>
       <div className="mt-4">
         <Link

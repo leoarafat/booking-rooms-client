@@ -10,9 +10,9 @@ import React, { useState } from "react";
 const Profile = () => {
   const [avatar, setAvatar] = useState(null);
   const user = getUserInfo() as any;
-  console.log(user);
+
   const { data } = useLoadUserQuery(user.userId);
-  console.log(data);
+
   return (
     <div className="w-full h-full bg-transparent mt-[80px]">
       {/* <ProfileInfo user={user} avatar={avatar} /> */}

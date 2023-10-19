@@ -12,14 +12,8 @@ import {
   useUpdateProfileMutation,
 } from "@/redux/slices/user/userApi";
 import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
 
-type Props = {
-  avatar: string | null;
-  id: any;
-};
-
-const ProfileInfo: FC<Props> = ({ params }: any) => {
+const ProfileInfo = ({ params }: any) => {
   const id = params.id;
   const [avatar, setAvatar] = useState(null);
   const {

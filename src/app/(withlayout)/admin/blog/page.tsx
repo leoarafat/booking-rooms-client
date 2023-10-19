@@ -117,7 +117,11 @@ const BlogList = () => {
         />
         <div>
           <Link href="/admin/blog/create">
-            <Button variant="contained" endIcon={<SendIcon />}>
+            <Button
+              className="bg-[#1976D2] "
+              variant="contained"
+              endIcon={<SendIcon />}
+            >
               Create Blog
             </Button>
           </Link>

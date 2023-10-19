@@ -4,8 +4,6 @@ import { styles } from "@/utils/styles";
 import { Spin } from "antd";
 import React, { FC } from "react";
 import {
-  BarChart,
-  Bar,
   ResponsiveContainer,
   YAxis,
   XAxis,
@@ -22,22 +20,12 @@ type Props = {
 
 const BookingsAnalytics: FC<Props> = ({ isDashboard }) => {
   const { data, isLoading, isError } = useGetBookingAnalyticsQuery({});
-
-  const analyticsData = [
-    { name: "Page A", Count: 4000 },
-    { name: "Page B", Count: 3000 },
-    { name: "Page C", Count: 5000 },
-    { name: "Page D", Count: 1000 },
-    { name: "Page E", Count: 4000 },
-    { name: "Page F", Count: 800 },
-    { name: "Page G", Count: 200 },
-  ];
-  //   const analyticsData: any[] = [];
-  //   if (data) {
-  //     data?.data?.last12Months.forEach((item: any) => {
-  //       analyticsData.push({ name: item.month, count: item.count });
-  //     });
-  //   }
+  const analyticsData: any[] = [];
+  if (data) {
+    data?.last12Months.forEach((item: any) => {
+      analyticsData.push({ name: item.month, Count: item.count });
+    });
+  }
   return (
     <>
       {isLoading ? (

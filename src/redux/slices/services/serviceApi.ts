@@ -5,7 +5,7 @@ export const serviceApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createService: build.mutation({
       query: (data) => ({
-        url: `/services/create-service`,
+        url: `services/create-service`,
         method: "POST",
         data: data,
       }),
@@ -15,7 +15,7 @@ export const serviceApi = baseApi.injectEndpoints({
     //!
     addToCart: build.mutation({
       query: (data) => ({
-        url: `/services/addToCart`,
+        url: `services/addToCart`,
         method: "POST",
         data: data,
       }),
@@ -23,9 +23,19 @@ export const serviceApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.cart],
     }),
     //!
+    getMyCart: build.query({
+      query: () => {
+        return {
+          url: `services/cart`,
+          method: "GET",
+        };
+      },
+      providesTags: [tagTypes.cart],
+    }),
+    //!
     singleService: build.query({
       query: (id: string | string[] | undefined) => ({
-        url: `/services/${id}`,
+        url: `services/${id}`,
         method: "GET",
       }),
       providesTags: [tagTypes.service, tagTypes.comment, tagTypes.review],
@@ -34,7 +44,7 @@ export const serviceApi = baseApi.injectEndpoints({
     services: build.query({
       query: (arg: Record<string, any>) => {
         return {
-          url: `/services`,
+          url: `services`,
           method: "GET",
           params: arg,
         };
@@ -50,7 +60,7 @@ export const serviceApi = baseApi.injectEndpoints({
     //!
     updateService: build.mutation({
       query: (data) => ({
-        url: `/services/update-service/${data.id}`,
+        url: `services/update-service/${data.id}`,
         method: "PATCH",
         data: data,
       }),
@@ -59,7 +69,7 @@ export const serviceApi = baseApi.injectEndpoints({
     //!
     deleteService: build.mutation({
       query: (id) => ({
-        url: `/services/${id}`,
+        url: `services/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.service],
@@ -82,6 +92,14 @@ export const serviceApi = baseApi.injectEndpoints({
 
       invalidatesTags: [tagTypes.review],
     }),
+    //!
+    removeFromCart: build.mutation({
+      query: (id) => ({
+        url: `services/${id}/cart`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [tagTypes.cart],
+    }),
   }),
 });
 
@@ -94,4 +112,6 @@ export const {
   useAddToCartMutation,
   useAddCommentMutation,
   useAddReviewMutation,
+  useGetMyCartQuery,
+  useRemoveFromCartMutation,
 } = serviceApi;

@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hotel Haven
 
-## Getting Started
+Hotel Haven is a booking management website built using modern technologies to streamline the booking process and enhance user experience. This README provides an overview of the project, its features, and the technologies used.
 
-First, run the development server:
+## Live URL: https://hotel-haven-seven.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Credentials
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run Hotel Haven successfully, you'll need to set up the following credentials:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Super Admin**:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  - Email: yeasinarafat1734@gmail.com
+  - password: 123456
 
-## Learn More
+- **Admin**:
 
-To learn more about Next.js, take a look at the following resources:
+  - Email: lionelarafat@gmail.com
+  - password: 123456
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Backend**:
 
-## Deploy on Vercel
+  - Node.js with Express.js
+  - TypeScript
+  - Mongoose (MongoDB ODM)
+  - Nodemailer (for email communication)
+  - Zod (for validation)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Frontend**:
+  - Next.js (React framework)
+  - TypeScript
+  - Redux Toolkit Query (RTK Query for state management)
+  - Material-UI (for UI components)
+  - Recharts (for data visualization)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Features
+
+### Super Admin Role
+
+- Super admin can create and manage admin users.
+- Super admin has control over all user accounts, including admin accounts.
+- Can handle invoices, booking invoices, and service invoices.
+- Manages all users and their permissions.
+- Manages categories, services, bookings, FAQs, and blog posts.
+
+### Admin Role
+
+- Admin users have the authority to manage the entire website.
+- Can view and handle invoices, booking invoices, and service invoices.
+- Manage users with different roles.
+- Control categories, services, bookings, FAQs, and blog posts.
+
+### User Role
+
+- Regular users can book rooms from the available hotel properties.
+- Choose their preferred hotel property from the website.
+- Add services to their cart and remove items as needed.
+
+### Enhanced User Experience
+
+- Implement searching, sorting, and filtering to improve the user experience.
+- Enhance usability and navigation for users.

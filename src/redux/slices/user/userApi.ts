@@ -5,7 +5,7 @@ export const userApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     userCreate: build.mutation({
       query: (userData) => ({
-        url: `/user/create-user`,
+        url: `user/create-user`,
         method: "POST",
         data: userData,
       }),
@@ -15,7 +15,7 @@ export const userApi = baseApi.injectEndpoints({
     //!
     createAdmin: build.mutation({
       query: (adminData) => ({
-        url: `/user/create-admin`,
+        url: `user/create-admin`,
         method: "POST",
         data: adminData,
       }),
@@ -25,7 +25,7 @@ export const userApi = baseApi.injectEndpoints({
     //!
     userLogin: build.mutation({
       query: (loginData) => ({
-        url: `/auth/login`,
+        url: `auth/login`,
         method: "POST",
         data: loginData,
       }),
@@ -34,7 +34,7 @@ export const userApi = baseApi.injectEndpoints({
     //!
     loadUser: build.query({
       query: (id: string | string[] | undefined) => ({
-        url: `/user/${id}`,
+        url: `user/${id}`,
         method: "GET",
         credentials: "include" as const,
       }),
@@ -45,7 +45,7 @@ export const userApi = baseApi.injectEndpoints({
     users: build.query({
       query: (arg: Record<string, any>) => {
         return {
-          url: `/user`,
+          url: `user`,
           method: "GET",
           params: arg,
         };
@@ -61,7 +61,7 @@ export const userApi = baseApi.injectEndpoints({
     //!
     updateAvatar: build.mutation({
       query: (avatar) => ({
-        url: "/user/update-user-avatar",
+        url: "user/update-user-avatar",
         method: "PUT",
         data: { avatar },
         credentials: "include" as const,
@@ -71,7 +71,7 @@ export const userApi = baseApi.injectEndpoints({
     //!
     updateProfile: build.mutation({
       query: ({ id, name }) => ({
-        url: `/user/update-my-profile/${id}`,
+        url: `user/update-my-profile/${id}`,
         method: "PATCH",
         data: { name },
       }),
@@ -80,7 +80,7 @@ export const userApi = baseApi.injectEndpoints({
     //!
     updatePassword: build.mutation({
       query: ({ oldPassword, newPassword }) => ({
-        url: "/auth/change-password",
+        url: "auth/change-password",
         method: "POST",
         data: { oldPassword, newPassword },
         credentials: "include" as const,
@@ -90,7 +90,7 @@ export const userApi = baseApi.injectEndpoints({
     //!
     updateAdmin: build.mutation({
       query: (data) => ({
-        url: `/user/admin-profile/${data.id}`,
+        url: `user/admin-profile/${data.id}`,
         method: "PATCH",
         data: data.body,
       }),
@@ -99,7 +99,7 @@ export const userApi = baseApi.injectEndpoints({
     //! delete student
     deleteAdmin: build.mutation({
       query: (id) => ({
-        url: `/user/${id}`,
+        url: `user/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.admin],
@@ -107,7 +107,7 @@ export const userApi = baseApi.injectEndpoints({
     //! delete student
     deleteUser: build.mutation({
       query: (id) => ({
-        url: `/user/${id}`,
+        url: `user/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.admin],
@@ -116,7 +116,7 @@ export const userApi = baseApi.injectEndpoints({
     //!
     updateProfileByIdmin: build.mutation({
       query: (data) => ({
-        url: `/user/user-profile/${data.id}`,
+        url: `user/user-profile/${data.id}`,
         method: "PATCH",
         data: data.body,
       }),

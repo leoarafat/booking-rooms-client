@@ -19,7 +19,7 @@ import { useServicesQuery } from "@/redux/slices/services/serviceApi";
 import { useCategoriesQuery } from "@/redux/slices/category/categoryApi";
 
 import { useSearchParams } from "next/navigation";
-import { useDebounced, useMinMaxDebounced } from "@/redux/hooks";
+import { useDebounced } from "@/redux/hooks";
 
 const LayoutPage = () => {
   const searchParams = useSearchParams();

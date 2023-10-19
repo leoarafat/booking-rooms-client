@@ -1,11 +1,13 @@
 import React from "react";
 import { Button, TextField, Typography, Box, Paper } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
+import { getUserInfo } from "@/services/auth.service";
+import Link from "next/link";
 
 const ServiceCommentForm = ({ onSubmitReview, isQuestion }: any) => {
   const { control, handleSubmit, reset, formState } = useForm();
   const { isDirty, isValid } = formState;
-
+  const { userId } = getUserInfo() as any;
   const onSubmit = (data: any) => {
     console.log(data);
     // Call the onSubmit callback with the comment data
@@ -40,14 +42,24 @@ const ServiceCommentForm = ({ onSubmitReview, isQuestion }: any) => {
             )}
           />
           <Box mt={2}>
-            <Button
-              type="submit"
-              variant="contained"
-              className="bg-[#3365C0]"
-              disabled={!isDirty || !isValid}
-            >
-              {isQuestion ? "Ask Question" : "Add Comment"}
-            </Button>
+            {userId ? (
+              <Button
+                type="submit"
+                variant="contained"
+                className="bg-[#3365C0]"
+                disabled={!isDirty || !isValid}
+              >
+                {isQuestion ? "Ask Question" : "Add Comment"}
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                variant="contained"
+                className="bg-[#3365C0]"
+              >
+                <Link href={"/login"}>Login First</Link>
+              </Button>
+            )}
           </Box>
         </form>
       </Paper>

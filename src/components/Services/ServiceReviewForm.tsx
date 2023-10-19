@@ -8,11 +8,13 @@ import {
   Paper,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
+import { getUserInfo } from "@/services/auth.service";
+import Link from "next/link";
 
 const ServiceReviewForm = ({ onSubmitReview }: any) => {
   const { control, handleSubmit, reset, formState } = useForm();
   const { isDirty, isValid } = formState;
-
+  const { userId } = getUserInfo() as any;
   const onSubmit = (data: any) => {
     // Call the onSubmit callback with the review data
     onSubmitReview(data);
@@ -62,7 +64,11 @@ const ServiceReviewForm = ({ onSubmitReview }: any) => {
               className="bg-[#3365C0]"
               disabled={!isDirty || !isValid}
             >
-              Submit Review
+              {userId ? (
+                "Submit Review"
+              ) : (
+                <Link href={"/login"}>Login first</Link>
+              )}
             </Button>
           </Box>
         </form>

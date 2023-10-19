@@ -15,7 +15,8 @@ import { useRouter } from "next/navigation";
 import { useCreateBookingMutation } from "@/redux/slices/services/bookingApi";
 import { useSingleServiceQuery } from "@/redux/slices/services/serviceApi";
 import { Spin, message } from "antd";
-const rooms = [
+
+export const rooms = [
   { value: 1, label: "1" },
   { value: 2, label: "2" },
   { value: 3, label: "3" },
@@ -23,7 +24,7 @@ const rooms = [
   { value: 5, label: "5" },
 ];
 
-function CheckoutForm({ searchParams }: Record<string, any>) {
+function CheckoutForm({ searchParams }: any) {
   const { id, userId } = searchParams;
   const [selectedRoom, setSelectedRoom] = useState("");
   const [createBooking, { isLoading: bookingLoading, error }] =
@@ -140,7 +141,7 @@ function CheckoutForm({ searchParams }: Record<string, any>) {
                             field.onChange(event); // This line is important to update the form state
                           }}
                         >
-                          {rooms.map((option) => (
+                          {rooms.map((option: any) => (
                             <MenuItem key={option.value} value={option.value}>
                               {option.label}
                             </MenuItem>

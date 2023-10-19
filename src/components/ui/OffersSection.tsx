@@ -9,6 +9,7 @@ import {
   Button,
   CardMedia,
 } from "@mui/material";
+import Link from "next/link";
 
 const Offers = () => {
   return (
@@ -34,9 +35,12 @@ const Offers = () => {
                         Browse properties offering long-term stays, many at
                         reduced monthly rates.
                       </Typography>
-                      <Button variant="outlined" color="primary">
-                        Find a stay
-                      </Button>
+                      <Link href={"/extended-says"}>
+                        {" "}
+                        <Button variant="outlined" color="primary">
+                          Find a stay
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Grid>
                   <Grid item xs={12} sm={4}>
@@ -65,7 +69,7 @@ const Offers = () => {
                       <Typography variant="body2" color="textSecondary">
                         Explore thousands of destinations worldwide and save 15%
                         or more.
-                      </Typography>
+                      </Typography>{" "}
                       <Button variant="outlined" color="primary">
                         Find late escape deals
                       </Button>

@@ -5,7 +5,7 @@ export const bookingsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createBooking: build.mutation({
       query: (data) => ({
-        url: `/bookings/`,
+        url: `bookings/`,
         method: "POST",
         data: data,
       }),
@@ -13,19 +13,12 @@ export const bookingsApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.booking],
     }),
     //!
-    // //!
-    // singleService: build.query({
-    //   query: (id: string | string[] | undefined) => ({
-    //     url: `/services/${id}`,
-    //     method: "GET",
-    //   }),
-    //   providesTags: [tagTypes.service, tagTypes.comment, tagTypes.review],
-    // }),
+
     //!
     booking: build.query({
       query: () => {
         return {
-          url: `/bookings/my-bookings`,
+          url: `bookings/my-bookings`,
           method: "GET",
         };
       },
@@ -36,7 +29,7 @@ export const bookingsApi = baseApi.injectEndpoints({
     allBookings: build.query({
       query: () => {
         return {
-          url: `/bookings/`,
+          url: `bookings/`,
           method: "GET",
         };
       },
@@ -46,7 +39,7 @@ export const bookingsApi = baseApi.injectEndpoints({
     //! get single
     singleBooking: build.query({
       query: (id: string | string[] | undefined) => ({
-        url: `/bookings/${id}`,
+        url: `bookings/${id}`,
         method: "GET",
       }),
       providesTags: [tagTypes.service, tagTypes.comment, tagTypes.review],
@@ -54,7 +47,7 @@ export const bookingsApi = baseApi.injectEndpoints({
     //! delete student
     cancelBooking: build.mutation({
       query: () => ({
-        url: `/bookings/cancel-bookings`,
+        url: `bookings/cancel-bookings`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.booking],

@@ -5,7 +5,7 @@ export const blogApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createBlog: build.mutation({
       query: (data) => ({
-        url: `/layouts/create-blog`,
+        url: `layouts/create-blog`,
         method: "POST",
         data: data,
       }),
@@ -15,7 +15,7 @@ export const blogApi = baseApi.injectEndpoints({
     //!
     overView: build.mutation({
       query: (data) => ({
-        url: `/servey`,
+        url: `servey`,
         method: "POST",
         data: data,
       }),
@@ -25,7 +25,7 @@ export const blogApi = baseApi.injectEndpoints({
     //!
     singleBlog: build.query({
       query: (id: string | string[] | undefined) => ({
-        url: `/layouts/blog/${id}`,
+        url: `layouts/blog/${id}`,
         method: "GET",
       }),
       providesTags: [tagTypes.blog],
@@ -34,7 +34,7 @@ export const blogApi = baseApi.injectEndpoints({
     blogs: build.query({
       query: (arg: Record<string, any>) => {
         return {
-          url: `/layouts/blog`,
+          url: `layouts/blog`,
           method: "GET",
           params: arg,
         };
@@ -50,7 +50,7 @@ export const blogApi = baseApi.injectEndpoints({
     overviews: build.query({
       query: (arg: Record<string, any>) => {
         return {
-          url: `/servey/`,
+          url: `servey/`,
           method: "GET",
           params: arg,
         };
@@ -66,7 +66,7 @@ export const blogApi = baseApi.injectEndpoints({
     //!
     updateBlog: build.mutation({
       query: (data) => ({
-        url: `/layouts/update-blog/${data.id}`,
+        url: `layouts/update-blog/${data.id}`,
         method: "PATCH",
         data: data,
       }),
@@ -75,7 +75,7 @@ export const blogApi = baseApi.injectEndpoints({
     //!
     deleteBlog: build.mutation({
       query: (id) => ({
-        url: `/layouts/blog/${id}`,
+        url: `layouts/blog/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.blog],
@@ -83,7 +83,7 @@ export const blogApi = baseApi.injectEndpoints({
     //!
     createFaq: build.mutation({
       query: (data) => ({
-        url: `/layouts/create-faq`,
+        url: `layouts/create-faq`,
         method: "POST",
         data: data,
       }),
@@ -94,7 +94,7 @@ export const blogApi = baseApi.injectEndpoints({
     faqs: build.query({
       query: (arg: Record<string, any>) => {
         return {
-          url: `/layouts/faq`,
+          url: `layouts/faq`,
           method: "GET",
         };
       },

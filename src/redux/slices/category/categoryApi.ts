@@ -5,7 +5,7 @@ export const categoryApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     createCategory: build.mutation({
       query: (data) => ({
-        url: `/category/create-category`,
+        url: `/ategory/create-category`,
         method: "POST",
         data: data,
       }),
@@ -15,7 +15,7 @@ export const categoryApi = baseApi.injectEndpoints({
     //!
     singleCategory: build.query({
       query: (id: string | string[] | undefined) => ({
-        url: `/category/${id}`,
+        url: `category/${id}`,
         method: "GET",
       }),
       providesTags: [tagTypes.category],
@@ -24,7 +24,7 @@ export const categoryApi = baseApi.injectEndpoints({
     categories: build.query({
       query: (arg: Record<string, any>) => {
         return {
-          url: `/category`,
+          url: `category`,
           method: "GET",
           params: arg,
         };
@@ -40,7 +40,7 @@ export const categoryApi = baseApi.injectEndpoints({
     //!
     updateCategory: build.mutation({
       query: (data) => ({
-        url: `/category/update-category/${data.id}`,
+        url: `category/update-category/${data.id}`,
         method: "PATCH",
         data: data,
       }),
@@ -49,7 +49,7 @@ export const categoryApi = baseApi.injectEndpoints({
     //!
     deleteCategory: build.mutation({
       query: (id) => ({
-        url: `/category/${id}`,
+        url: `category/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: [tagTypes.category],

@@ -3,16 +3,9 @@ import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import ActionBar from "@/components/ui/ActionBar";
 import Button from "@mui/material/Button";
-
 import { FcCancel } from "react-icons/fc";
-
 import Swal from "sweetalert2";
 import { format } from "timeago.js";
-
-import {
-  useBlogsQuery,
-  useDeleteBlogMutation,
-} from "@/redux/slices/blog/blogApi";
 import {
   useBookingQuery,
   useCancelBookingMutation,

@@ -130,7 +130,7 @@ const BlogPostCreateForm = () => {
           <Button
             type="submit"
             variant="contained"
-            color="primary"
+            className="bg-[#1976D2] "
             sx={{ marginTop: 2 }}
           >
             {isLoading ? "Creating..." : "Create"}

@@ -1,7 +1,7 @@
 "use client";
 import { useGetUsersAnalyticsQuery } from "@/redux/slices/services/analyticsApi";
 import { styles } from "@/utils/styles";
-import { Spin } from "antd";
+import { Row, Space, Spin } from "antd";
 import React, { FC } from "react";
 import {
   BarChart,
@@ -22,32 +22,28 @@ type Props = {
 
 const UsersAnalytics: FC<Props> = ({ isDashboard }) => {
   const { data, isLoading, isError } = useGetUsersAnalyticsQuery({});
-  console.log(data?.data);
-  const analyticsData = [
-    { name: "January 2023", count: 440 },
-    { name: "February 2023", count: 8200 },
-    { name: "March 2023", count: 4033 },
-    { name: "April 2023", count: 4502 },
-    { name: "May 2023", count: 2042 },
-    { name: "Jun 2023", count: 3454 },
-    { name: "July 2023", count: 356 },
-    { name: "Aug 2023", count: 5667 },
-    { name: "Sept 2023", count: 1320 },
-    { name: "Oct 2023", count: 6526 },
-    { name: "Nov 2023", count: 5480 },
-    { name: "December 2023", count: 485 },
-  ];
-  //   const analyticsData: any[] = [];
-  //   if (data) {
-  //     data?.data?.last12Months.forEach((item: any) => {
-  //       analyticsData.push({ name: item.month, count: item.count });
-  //     });
-  //   }
-  //   const minValue = 0;
+
+  const analyticsData: any[] = [];
+  if (data) {
+    data?.last12Months.forEach((item: any) => {
+      analyticsData.push({ name: item.month, count: item.count });
+    });
+  }
+  const minValue = 0;
   return (
     <>
       {isLoading ? (
-        <Spin size="large" />
+        <Row
+          justify="center"
+          align="middle"
+          style={{
+            height: "100vh",
+          }}
+        >
+          <Space>
+            <Spin tip="Loading" size="large"></Spin>
+          </Space>
+        </Row>
       ) : (
         <div
           className={`${
