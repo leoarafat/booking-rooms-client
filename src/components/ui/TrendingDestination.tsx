@@ -61,7 +61,7 @@ import Link from "next/link";
 
 export default function TrendingDestination() {
   const { data: categoryData } = useCategoriesQuery({});
-  const categoriesToDisplay = categoryData?.categories.slice(0, 5);
+  const categoriesToDisplay = categoryData?.categories.slice(0, 4);
   return (
     <Container>
       <Typography variant="h5">Trending destinations</Typography>

@@ -17,7 +17,7 @@ import Avatar from "@mui/material/Avatar";
 const ServiceList = () => {
   //@ts-ignore
   const { data: serviceData } = useServicesQuery();
-  console.log(serviceData);
+
   const [deleteService] = useDeleteServiceMutation();
   //!
   const handleDelete = async (item: any) => {
@@ -125,7 +125,7 @@ const ServiceList = () => {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[5, 10]}
+          pageSizeOptions={[5, 10, 15, 20]}
           checkboxSelection
         />
       </div>
