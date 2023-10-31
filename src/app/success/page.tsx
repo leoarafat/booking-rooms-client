@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import Header from "@/components/layouts/Header";
 import { getUserInfo } from "@/services/auth.service";
 import { useLoadUserQuery } from "@/redux/slices/user/userApi";
+import Heading from "@/utils/Heading";
 
 const SuccessPage = ({ searchParams }: Record<string, any>) => {
   const { serviceId } = searchParams;
@@ -15,6 +16,11 @@ const SuccessPage = ({ searchParams }: Record<string, any>) => {
   //   console.log(data);
   return (
     <>
+      <Heading
+        title="HotelHaven || Success"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <Header />
       <Container maxWidth="md">
         <Typography variant="h4" align="center" gutterBottom>

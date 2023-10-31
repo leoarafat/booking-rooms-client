@@ -2,10 +2,16 @@
 import React from "react";
 import { Container, Typography, Grid, Paper } from "@mui/material";
 import Header from "@/components/layouts/Header";
+import Heading from "@/utils/Heading";
 
 const AboutUs = () => {
   return (
     <>
+      <Heading
+        title="HotelHaven || About Us"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <Header />
       <Container>
         <Typography variant="h4" component="h2" gutterBottom>

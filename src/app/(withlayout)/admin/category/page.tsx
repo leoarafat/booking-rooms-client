@@ -15,6 +15,7 @@ import {
   useCategoriesQuery,
   useDeleteCategoryMutation,
 } from "@/redux/slices/category/categoryApi";
+import Heading from "@/utils/Heading";
 //!
 
 //!
@@ -107,6 +108,11 @@ const CategoryList = () => {
 
   return (
     <div>
+      <Heading
+        title="HotelHaven || Categories"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <ActionBar title="Category List">
         <input
           type="text"

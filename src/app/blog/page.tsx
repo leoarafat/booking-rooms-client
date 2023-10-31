@@ -19,6 +19,7 @@ import Header from "@/components/layouts/Header";
 import { Container, Grid } from "@mui/material";
 import { useBlogsQuery } from "@/redux/slices/blog/blogApi";
 import Pagination from "@mui/material/Pagination";
+import Heading from "@/utils/Heading";
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -46,6 +47,11 @@ export default function BlogCardList() {
 
   return (
     <>
+      <Heading
+        title="HotelHaven || Blog"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <Header />
       <Container>
         <Typography variant="h5">Blogs</Typography>

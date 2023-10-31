@@ -5,9 +5,15 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Header from "@/components/layouts/Header";
 import { Container } from "@mui/material";
+import Heading from "@/utils/Heading";
 export default function SpacingGrid() {
   return (
     <>
+      <Heading
+        title="HotelHaven || Discount"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <Header />
       <Container>
         {" "}

@@ -10,6 +10,7 @@ import {
   useGetMyCartQuery,
   useRemoveFromCartMutation,
 } from "@/redux/slices/services/serviceApi";
+import Heading from "@/utils/Heading";
 
 //!
 const BookingList = () => {
@@ -82,6 +83,11 @@ const BookingList = () => {
 
   return (
     <div>
+      <Heading
+        title="HotelHaven || Cart List"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <ActionBar title="Cart List">
         <input
           type="text"

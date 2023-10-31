@@ -17,6 +17,7 @@ import {
 } from "@/redux/slices/user/userApi";
 import { useRouter } from "next/navigation";
 import { message } from "antd";
+import Heading from "@/utils/Heading";
 
 const UserUpdateForm = ({ params }: any) => {
   const id = params.id;
@@ -42,6 +43,11 @@ const UserUpdateForm = ({ params }: any) => {
 
   return (
     <>
+      <Heading
+        title="HotelHaven || Edit"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       {isLoading ? (
         <p>Loading..</p>
       ) : (

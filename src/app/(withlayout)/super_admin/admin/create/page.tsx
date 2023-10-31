@@ -12,6 +12,7 @@ import {
 import { useCreateAdminMutation } from "@/redux/slices/user/userApi";
 import { message } from "antd";
 import { useRouter } from "next/navigation";
+import Heading from "@/utils/Heading";
 
 const AdminCreateForm = () => {
   const router = useRouter();
@@ -40,72 +41,79 @@ const AdminCreateForm = () => {
   };
 
   return (
-    <Container>
-      <Typography variant="h5" gutterBottom>
-        Create New Admin
-      </Typography>
+    <>
+      <Heading
+        title="HotelHaven || Add Admin"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
+      <Container>
+        <Typography variant="h5" gutterBottom>
+          Create New Admin
+        </Typography>
 
-      <Paper elevation={3} sx={{ padding: 3 }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Controller
-                name="name"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Name"
-                    variant="outlined"
-                    {...field}
-                  />
-                )}
-              />
+        <Paper elevation={3} sx={{ padding: 3 }}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Controller
+                  name="name"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Name"
+                      variant="outlined"
+                      {...field}
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Controller
+                  name="email"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Email"
+                      variant="outlined"
+                      {...field}
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Controller
+                  name="password"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Password"
+                      type="password"
+                      variant="outlined"
+                      {...field}
+                    />
+                  )}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="email"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Email"
-                    variant="outlined"
-                    {...field}
-                  />
-                )}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="password"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Password"
-                    type="password"
-                    variant="outlined"
-                    {...field}
-                  />
-                )}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            sx={{ marginTop: 2 }}
-          >
-            {isLoading ? "Creating..." : "Create Admin"}
-          </Button>
-        </form>
-      </Paper>
-    </Container>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{ marginTop: 2 }}
+            >
+              {isLoading ? "Creating..." : "Create Admin"}
+            </Button>
+          </form>
+        </Paper>
+      </Container>
+    </>
   );
 };
 

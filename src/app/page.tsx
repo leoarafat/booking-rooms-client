@@ -2,6 +2,7 @@ import AllCategory from "@/components/Category/AllCategory";
 import AvailableServiceSection from "@/components/Services/AvailabeService";
 import UpComingService from "@/components/Services/UpcommingService";
 import Header from "@/components/layouts/Header";
+import FaqItems from "@/components/ui/FaqItem";
 import Footer from "@/components/ui/Footer";
 import Hero from "@/components/ui/Hero";
 import LatestNews from "@/components/ui/LatestNews";
@@ -30,6 +31,7 @@ const RootPage = () => {
       <OverviewForm />
       <UserReviews />
       <LatestNews />
+      <FaqItems />
       <Footer />
     </div>
   );

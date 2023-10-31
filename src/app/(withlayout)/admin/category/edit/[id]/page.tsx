@@ -18,6 +18,7 @@ import {
 import { Spin, message } from "antd";
 import { LocationEnum } from "@/types";
 import { useRouter } from "next/navigation";
+import Heading from "@/utils/Heading";
 
 const UpdateCategory = ({ params }: any) => {
   const { id } = params;
@@ -108,6 +109,11 @@ const UpdateCategory = ({ params }: any) => {
 
   return (
     <>
+      <Heading
+        title="HotelHaven || Edit Category"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       {serviceLoading ? (
         <Spin size="large" />
       ) : (

@@ -16,6 +16,7 @@ import {
   useBlogsQuery,
   useDeleteBlogMutation,
 } from "@/redux/slices/blog/blogApi";
+import Heading from "@/utils/Heading";
 //!
 
 //!
@@ -109,6 +110,11 @@ const BlogList = () => {
 
   return (
     <div>
+      <Heading
+        title="HotelHaven || Edit Blog"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <ActionBar title="Blog List">
         <input
           type="text"

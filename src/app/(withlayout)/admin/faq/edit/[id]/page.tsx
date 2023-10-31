@@ -1,10 +1,16 @@
+import Heading from "@/utils/Heading";
 import React from "react";
 
 const page = ({ params }: any) => {
   console.log(params.id);
   return (
     <div>
-      <h1>Update</h1>
+      <Heading
+        title="HotelHaven || Edit Category"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
+      <h1 className="text-xl font-semibold text-center">Coming soon...</h1>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import {
 import { useCreateFaqMutation } from "@/redux/slices/blog/blogApi";
 import { message } from "antd";
 import { useRouter } from "next/navigation";
+import Heading from "@/utils/Heading";
 
 const FAQCreateForm = () => {
   const { handleSubmit, control, reset } = useForm();
@@ -35,58 +36,65 @@ const FAQCreateForm = () => {
   };
 
   return (
-    <Container>
-      <Typography variant="h5" gutterBottom>
-        Create New FAQ Entry
-      </Typography>
+    <>
+      <Heading
+        title="HotelHaven || Create Faq"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
+      <Container>
+        <Typography variant="h5" gutterBottom>
+          Create New FAQ Entry
+        </Typography>
 
-      <Paper elevation={3} sx={{ padding: 3 }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Controller
-                name="question"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Question"
-                    variant="outlined"
-                    {...field}
-                  />
-                )}
-              />
+        <Paper elevation={3} sx={{ padding: 3 }}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Controller
+                  name="question"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Question"
+                      variant="outlined"
+                      {...field}
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Controller
+                  name="answer"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Answer"
+                      variant="outlined"
+                      multiline
+                      minRows={3}
+                      {...field}
+                    />
+                  )}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="answer"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Answer"
-                    variant="outlined"
-                    multiline
-                    minRows={3}
-                    {...field}
-                  />
-                )}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            sx={{ marginTop: 2 }}
-          >
-            {isLoading ? "Creating..." : "Create FAQ"}
-          </Button>
-        </form>
-      </Paper>
-    </Container>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              sx={{ marginTop: 2 }}
+            >
+              {isLoading ? "Creating..." : "Create FAQ"}
+            </Button>
+          </form>
+        </Paper>
+      </Container>
+    </>
   );
 };
 

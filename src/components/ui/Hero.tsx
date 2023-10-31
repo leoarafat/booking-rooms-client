@@ -15,6 +15,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import Checkbox from "@mui/material/Checkbox";
 import { HeroImages } from "@/constants/images";
+import Link from "next/link";
 
 function HeroSection() {
   const [currentBackgroundIndex, setCurrentBackgroundIndex] = useState(0);
@@ -108,20 +109,23 @@ function HeroSection() {
             <Grid item xs={12} md={6}>
               <Grid container spacing={3} alignItems="center">
                 <Grid item>
-                  <Button
-                    type="button"
-                    variant="contained"
-                    style={{
-                      backgroundColor: "red",
-                      color: "white",
-                      borderRadius: "50px",
-                      fontSize: "1rem",
-                      padding: "8px 16px",
-                    }}
-                  >
-                    <AddIcon style={{ marginRight: "8px" }} />
-                    Booking Room
-                  </Button>
+                  <Link href={"/services"}>
+                    {" "}
+                    <Button
+                      type="button"
+                      variant="contained"
+                      style={{
+                        backgroundColor: "red",
+                        color: "white",
+                        borderRadius: "50px",
+                        fontSize: "1rem",
+                        padding: "8px 16px",
+                      }}
+                    >
+                      <AddIcon style={{ marginRight: "8px" }} />
+                      Booking Room
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item>
                   <Button

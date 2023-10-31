@@ -10,6 +10,7 @@ import {
   useBookingQuery,
   useCancelBookingMutation,
 } from "@/redux/slices/services/bookingApi";
+import Heading from "@/utils/Heading";
 //!
 
 //!
@@ -88,6 +89,11 @@ const BookingList = () => {
 
   return (
     <div>
+      <Heading
+        title="HotelHaven || My Bookings"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <ActionBar title="Booking List">
         <input
           type="text"

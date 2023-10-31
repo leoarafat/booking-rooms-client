@@ -1,17 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { Container, Grid, Paper, Typography, Button } from "@mui/material";
 import LogoImage from "../../../public/assets/logo.png";
 import Image from "next/image";
 const Footer = () => {
   return (
-    <footer className="w-full bg-gray-100 dark:bg-gray-900 py-16">
+    <footer className="w-full  bg-gray-900 py-16">
       <div className="md:px-12 lg:px-28">
-        <div className="container m-auto space-y-6 text-gray-600 dark:text-gray-300">
+        <div className="container m-auto space-y-6 text-gray-300 flex flex-col justify-center items-center">
           <Image
             src={LogoImage}
-            className="w-20 sm:w-20 rounded-full "
-            alt="User logo"
+            // className="w-20 sm:w-20 rounded-full "
+            alt="Hotel haven"
             width="144"
             height="68"
           />

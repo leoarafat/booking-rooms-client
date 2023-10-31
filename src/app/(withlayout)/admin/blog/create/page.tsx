@@ -13,6 +13,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useCreateBlogMutation } from "@/redux/slices/blog/blogApi";
 import { message } from "antd";
+import Heading from "@/utils/Heading";
 
 const BlogPostCreateForm = () => {
   const { handleSubmit, control, reset } = useForm();
@@ -64,80 +65,87 @@ const BlogPostCreateForm = () => {
   };
 
   return (
-    <Container>
-      <Typography variant="h5" gutterBottom>
-        Create New Blog Post
-      </Typography>
+    <>
+      <Heading
+        title="HotelHaven || Create Blog"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
+      <Container>
+        <Typography variant="h5" gutterBottom>
+          Create New Blog Post
+        </Typography>
 
-      <Paper elevation={3} sx={{ padding: 3 }}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Controller
-                name="title"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Title"
-                    variant="outlined"
-                    {...field}
-                  />
-                )}
-              />
+        <Paper elevation={3} sx={{ padding: 3 }}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <Controller
+                  name="title"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Title"
+                      variant="outlined"
+                      {...field}
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Controller
+                  name="description"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextField
+                      fullWidth
+                      label="Description"
+                      variant="outlined"
+                      multiline
+                      minRows={3}
+                      {...field}
+                    />
+                  )}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <input
+                  type="file"
+                  accept="image/png, image/jpg, image/jpeg, image/webp"
+                  id="file"
+                  name="file"
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
+                <label htmlFor="file">
+                  <Button variant="contained" component="span">
+                    Upload Image
+                  </Button>
+                </label>
+              </Grid>
             </Grid>
-            <Grid item xs={12}>
-              <Controller
-                name="description"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <TextField
-                    fullWidth
-                    label="Description"
-                    variant="outlined"
-                    multiline
-                    minRows={3}
-                    {...field}
-                  />
-                )}
+            {blogImage && (
+              <img
+                src={blogImage.avatar}
+                alt="Uploaded Image"
+                style={{ width: "100%", marginTop: "1rem" }}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <input
-                type="file"
-                accept="image/png, image/jpg, image/jpeg, image/webp"
-                id="file"
-                name="file"
-                className="hidden"
-                onChange={handleImageChange}
-              />
-              <label htmlFor="file">
-                <Button variant="contained" component="span">
-                  Upload Image
-                </Button>
-              </label>
-            </Grid>
-          </Grid>
-          {blogImage && (
-            <img
-              src={blogImage.avatar}
-              alt="Uploaded Image"
-              style={{ width: "100%", marginTop: "1rem" }}
-            />
-          )}
-          <Button
-            type="submit"
-            variant="contained"
-            className="bg-[#1976D2] "
-            sx={{ marginTop: 2 }}
-          >
-            {isLoading ? "Creating..." : "Create"}
-          </Button>
-        </form>
-      </Paper>
-    </Container>
+            )}
+            <Button
+              type="submit"
+              variant="contained"
+              className="bg-[#1976D2] "
+              sx={{ marginTop: 2 }}
+            >
+              {isLoading ? "Creating..." : "Create"}
+            </Button>
+          </form>
+        </Paper>
+      </Container>
+    </>
   );
 };
 

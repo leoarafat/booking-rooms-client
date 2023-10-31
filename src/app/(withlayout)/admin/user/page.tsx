@@ -13,6 +13,7 @@ import {
 } from "@/redux/slices/user/userApi";
 import Swal from "sweetalert2";
 import { format } from "timeago.js";
+import Heading from "@/utils/Heading";
 //!
 
 //!
@@ -102,6 +103,11 @@ const UserList = () => {
 
   return (
     <div>
+      <Heading
+        title="HotelHaven || Users"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <ActionBar title="User List">
         <input
           type="text"

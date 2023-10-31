@@ -18,6 +18,7 @@ import {
 } from "@/redux/slices/services/bookingApi";
 import { useSingleServiceQuery } from "@/redux/slices/services/serviceApi";
 import { Spin, message } from "antd";
+import Heading from "@/utils/Heading";
 
 export const rooms = [
   { value: 1, label: "1" },
@@ -78,6 +79,11 @@ function CheckoutForm({ searchParams }: any) {
       ) : (
         <>
           {" "}
+          <Heading
+            title="HotelHaven || Checkout"
+            description="HotelHaven is booking platform"
+            keywords="Hotel, Property, Du Plex"
+          />
           <Header />
           <Container maxWidth="md">
             <Paper elevation={3} style={{ padding: "20px" }}>

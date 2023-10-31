@@ -10,6 +10,7 @@ import { format } from "timeago.js";
 import Avatar from "@mui/material/Avatar";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useFaqsQuery } from "@/redux/slices/blog/blogApi";
+import Heading from "@/utils/Heading";
 const FaqList = () => {
   const { data: faqData } = useFaqsQuery({});
 
@@ -37,6 +38,11 @@ const FaqList = () => {
   //!
   return (
     <div>
+      <Heading
+        title="HotelHaven || FAQ's"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <ActionBar title="Faq List">
         <input
           type="text"

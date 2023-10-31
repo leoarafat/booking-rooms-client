@@ -86,7 +86,7 @@ const ReviewCard = () => {
           <Grid container spacing={3}>
             {data?.data.map((review, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card style={{ backgroundColor: "#003B95", color: "#fff" }}>
+                <Card style={{ color: "#000" }}>
                   <CardContent>
                     <Avatar
                       src={review?.user?.avatar?.url}

@@ -22,6 +22,7 @@ import {
   useSingleBookingQuery,
   useUpdateBookingMutation,
 } from "@/redux/slices/services/bookingApi";
+import Heading from "@/utils/Heading";
 
 const UpdateCBooking = ({ params }: any) => {
   const { id } = params;
@@ -67,6 +68,11 @@ const UpdateCBooking = ({ params }: any) => {
 
   return (
     <>
+      <Heading
+        title="HotelHaven || Update Booking"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       {bookingtLoading ? (
         <Spin size="large" />
       ) : (

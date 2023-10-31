@@ -14,6 +14,7 @@ import { PiPencilSimpleThin } from "react-icons/pi";
 import { AiOutlineDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 import Avatar from "@mui/material/Avatar";
+import Heading from "@/utils/Heading";
 const ServiceList = () => {
   //@ts-ignore
   const { data: serviceData } = useServicesQuery();
@@ -102,6 +103,11 @@ const ServiceList = () => {
   //!
   return (
     <div>
+      <Heading
+        title="HotelHaven || Services"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       <ActionBar title="Service List">
         <input
           type="text"

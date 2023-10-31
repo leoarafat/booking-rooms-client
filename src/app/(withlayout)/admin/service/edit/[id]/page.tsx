@@ -383,6 +383,7 @@ import {
 import { Spin, message } from "antd";
 import { useRouter } from "next/navigation";
 import { useCategoriesQuery } from "@/redux/slices/category/categoryApi";
+import Heading from "@/utils/Heading";
 
 function ServiceEditForm({ params }: any) {
   const { id } = params;
@@ -472,6 +473,11 @@ function ServiceEditForm({ params }: any) {
 
   return (
     <>
+      <Heading
+        title="HotelHaven || Update Service"
+        description="HotelHaven is booking platform"
+        keywords="Hotel, Property, Du Plex"
+      />
       {serviceLoading ? (
         <Spin size="large" />
       ) : (
