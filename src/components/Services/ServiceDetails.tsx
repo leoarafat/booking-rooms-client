@@ -128,7 +128,14 @@ const ServiceDetails = ({ service, id, userId, refetch }: any) => {
       <Grid container spacing={2}>
         {/* Left Side: Display Service Information */}
         <Grid item xs={12} md={8}>
-          <Card elevation={3}>
+          <Card
+            style={{
+              background: "#010313",
+              color: "white",
+            }}
+            className="border border-gray-300 p-2 rounded-md"
+            elevation={3}
+          >
             <CardMedia
               component="img"
               height="250"
@@ -141,6 +148,7 @@ const ServiceDetails = ({ service, id, userId, refetch }: any) => {
               </Typography>
               <Typography variant="body1" gutterBottom>
                 <Rating
+                  className="bg-purple-500 rounded-md p-1"
                   name="rating"
                   value={service?.ratings}
                   precision={0.5}
@@ -195,46 +203,78 @@ const ServiceDetails = ({ service, id, userId, refetch }: any) => {
         {/* User Reviews and Comments */}
         <Grid item xs={12} md={8}>
           <Typography variant="h6" gutterBottom>
-            This property Reviews
+            This property Reviews:
           </Typography>
           {/* Loop through and display user reviews here */}
-          {service?.reviews?.map((review: any) => (
-            <div key={review.id}>
-              <Card style={{ marginBottom: "16px" }}>
-                <CardContent>
-                  <Avatar src={review?.user?.avatar?.url} alt={review._id} />
-                  <Typography variant="body1" gutterBottom>
-                    {review?.user?.name}: {review.comment}
-                  </Typography>
-                  <Rating
-                    name="rating"
-                    value={review.rating}
-                    precision={0.5}
-                    readOnly
-                  />
-                </CardContent>
-              </Card>
-            </div>
-          ))}
+          {service?.reviews?.length === 0 ? (
+            "There are no review yet"
+          ) : (
+            <>
+              {" "}
+              {service?.reviews?.map((review: any) => (
+                <div key={review.id}>
+                  <Card
+                    className="border border-gray-300 p-2 rounded-md"
+                    style={{
+                      marginBottom: "16px",
+                      background: "#010313",
+                      color: "white",
+                    }}
+                  >
+                    <CardContent>
+                      <Avatar
+                        src={review?.user?.avatar?.url}
+                        alt={review._id}
+                      />
+                      <Typography variant="body1" gutterBottom>
+                        {review?.user?.name}: {review.comment}
+                      </Typography>
+                      <Rating
+                        name="rating"
+                        value={review.rating}
+                        precision={0.5}
+                        readOnly
+                      />
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </>
+          )}
 
           <Typography variant="h6" gutterBottom>
-            This property Comments
+            This property comments or questions:
           </Typography>
           {/* Loop through and display user comments here */}
-          {service?.questions?.map((comment: any) => (
-            <Card key={comment._id} style={{ marginBottom: "16px" }}>
-              <CardContent>
-                <Avatar
-                  src={comment?.user?.avatar?.url}
-                  alt={comment.user?.name}
-                />
-                <Typography variant="h6" gutterBottom>
-                  {comment.user?.name}
-                </Typography>
-                <Typography variant="body2">{comment.question}</Typography>
-              </CardContent>
-            </Card>
-          ))}
+          {service?.questions?.length === 0 ? (
+            "There are no question yet"
+          ) : (
+            <>
+              {" "}
+              {service?.questions?.map((comment: any) => (
+                <Card
+                  className="border border-gray-300 p-2 rounded-md"
+                  style={{
+                    marginBottom: "16px",
+                    background: "#010313",
+                    color: "white",
+                  }}
+                  key={comment._id}
+                >
+                  <CardContent>
+                    <Avatar
+                      src={comment?.user?.avatar?.url}
+                      alt={comment.user?.name}
+                    />
+                    <Typography variant="h6" gutterBottom>
+                      {comment.user?.name}
+                    </Typography>
+                    <Typography variant="body2">{comment.question}</Typography>
+                  </CardContent>
+                </Card>
+              ))}
+            </>
+          )}
         </Grid>
 
         <Grid item xs={12} md={12}>
@@ -266,84 +306,72 @@ const ServiceDetails = ({ service, id, userId, refetch }: any) => {
                   Next
                 </Button>
               </Box>
-              <div className="pt-3">
-                <Grid container spacing={3}>
-                  {similarServices
-                    ?.slice(startIndex, startIndex + itemsPerPage)
-                    .map((service: any) => (
-                      <Grid item key={service._id} xs={12} sm={6} md={4}>
-                        <Link href={`/services/${service?._id}`}>
-                          {" "}
-                          <Card
+
+              <Grid container spacing={3}>
+                {similarServices
+                  ?.slice(startIndex, startIndex + itemsPerPage)
+                  .map((service: any) => (
+                    <Grid item key={service._id} xs={12} sm={6} md={4}>
+                      <Link href={`/services/${service?._id}`}>
+                        {" "}
+                        <Card
+                          className="border border-gray-300 p-2 rounded-md"
+                          sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "space-between",
+                            height: "100%",
+                            backgroundColor: "#010313",
+                            color: "white",
+                          }}
+                        >
+                          <CardMedia
+                            component="img"
+                            sx={{ width: "100%", height: "200px" }}
+                            image={service.thumbnail?.url}
+                            alt={service.propertyName}
+                          />
+                          <CardContent>
+                            <Typography variant="h6" gutterBottom>
+                              {service.propertyName}
+                            </Typography>
+                            <Typography variant="body2">
+                              Price: ${service.price}
+                            </Typography>
+                            <Typography variant="body2">
+                              Room: {service.roomTitle}
+                            </Typography>
+                            <Typography variant="body2">
+                              Bed: {service.bedTitle}
+                            </Typography>
+                            <Typography variant="body2">
+                              <LocationOnIcon fontSize="small" /> Location:{" "}
+                              {service.propertyLocation}
+                            </Typography>
+                          </CardContent>
+                          <Box
                             sx={{
+                              borderTop: "1px solid #ddd",
+                              padding: "10px",
                               display: "flex",
-                              flexDirection: "column",
                               justifyContent: "space-between",
-                              height: "100%",
-                              backgroundColor: "#f5f5f5",
-                              border: "1px solid #ddd",
+                              alignItems: "center",
                             }}
                           >
-                            <CardMedia
-                              component="img"
-                              sx={{ width: "100%", height: "200px" }}
-                              image={service.thumbnail?.url}
-                              alt={service.propertyName}
+                            <Typography variant="body2">
+                              Service Ratings:
+                            </Typography>
+                            <Rating
+                              name={`rating-${service.id}`}
+                              value={service.ratings}
+                              readOnly
                             />
-                            <CardContent>
-                              <Typography variant="h6" gutterBottom>
-                                {service.propertyName}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                color="text.secondary"
-                              >
-                                Price: ${service.price}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                color="text.secondary"
-                              >
-                                Room: {service.roomTitle}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                color="text.secondary"
-                              >
-                                Bed: {service.bedTitle}
-                              </Typography>
-                              <Typography
-                                variant="body2"
-                                color="text.secondary"
-                              >
-                                <LocationOnIcon fontSize="small" /> Location:{" "}
-                                {service.propertyLocation}
-                              </Typography>
-                            </CardContent>
-                            <Box
-                              sx={{
-                                borderTop: "1px solid #ddd",
-                                padding: "10px",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Typography variant="body2">
-                                Service Ratings:
-                              </Typography>
-                              <Rating
-                                name={`rating-${service.id}`}
-                                value={service.ratings}
-                                readOnly
-                              />
-                            </Box>
-                          </Card>
-                        </Link>
-                      </Grid>
-                    ))}
-                </Grid>
-              </div>
+                          </Box>
+                        </Card>
+                      </Link>
+                    </Grid>
+                  ))}
+              </Grid>
             </Container>
           </div>
         </Grid>

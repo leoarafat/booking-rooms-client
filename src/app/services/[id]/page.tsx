@@ -5,9 +5,9 @@ import Header from "@/components/layouts/Header";
 import { useSingleServiceQuery } from "@/redux/slices/services/serviceApi";
 import { getUserInfo } from "@/services/auth.service";
 import Heading from "@/utils/Heading";
-import { Spin } from "antd";
+import { Row, Space, Spin } from "antd";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React from "react";
 
 const Service = ({ params }: any) => {
   const id = params.id;
@@ -17,7 +17,21 @@ const Service = ({ params }: any) => {
   const { userId } = getUserInfo() as any;
   return (
     <>
-      {isLoading ? <Spin size="large" /> : <Header />}{" "}
+      {isLoading ? (
+        <Row
+          justify="center"
+          align="middle"
+          style={{
+            height: "100vh",
+          }}
+        >
+          <Space>
+            <Spin tip="Loading" size="large"></Spin>
+          </Space>
+        </Row>
+      ) : (
+        <Header />
+      )}{" "}
       <Heading
         title={data?.propertyName}
         description="HotelHaven"

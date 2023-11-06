@@ -58,7 +58,8 @@ function HeroSection() {
         <Paper
           style={{
             padding: "16px",
-            backgroundColor: "white",
+            backgroundColor: "#010313",
+            // color: "white",
             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             borderRadius: "8px",
           }}
@@ -67,7 +68,7 @@ function HeroSection() {
             <Grid item xs={12}>
               <Typography
                 variant="h4"
-                style={{ color: "black", marginBottom: "16px" }}
+                style={{ color: "white", marginBottom: "16px" }}
               >
                 Find Your Ideal Hotel
               </Typography>
@@ -87,7 +88,7 @@ function HeroSection() {
                   inputProps={{ "aria-label": "search" }}
                   style={{
                     background: "white",
-                    color: "black",
+                    color: "white",
                     width: "100%",
                     padding: "8px 12px",
                     border: "1px solid #ccc",

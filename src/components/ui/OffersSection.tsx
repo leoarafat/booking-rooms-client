@@ -19,17 +19,17 @@ const Offers = () => {
         <div className="pt-2">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6}>
-              <div className="bg-[#010313] text-white border border-gray-300 p-2 rounded-md">
+              <div>
                 {" "}
                 <Card
+                  className="border border-gray-300 p-1 rounded-md"
                   style={{
                     height: "200px",
+                    background: "#010313",
+                    color: "white",
                   }}
                 >
-                  <Grid
-                    container
-                    // spacing={2}
-                  >
+                  <Grid container spacing={2}>
                     <Grid item xs={12} sm={8}>
                       <CardContent>
                         <Typography variant="h5" gutterBottom>
@@ -47,7 +47,7 @@ const Offers = () => {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                       <img
-                        className="h-[200px]"
+                        className="h-[190px] rounded-md"
                         src="
                       https://res.cloudinary.com/arafatleo/image/upload/v1697548734/Location/pexels-photo-3184291_getvtb.jpg"
                         alt=""
@@ -58,10 +58,13 @@ const Offers = () => {
               </div>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <div className="bg-[#010313] text-white border border-gray-300 p-2 rounded-md">
+              <div>
                 <Card
+                  className=" border border-gray-300 p-1 rounded-md"
                   style={{
                     height: "200px",
+                    background: "#010313",
+                    color: "white",
                   }}
                 >
                   <Grid container spacing={2}>
@@ -81,7 +84,7 @@ const Offers = () => {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                       <img
-                        className="h-[200px]"
+                        className="h-[190px] rounded-md"
                         src="
                       https://res.cloudinary.com/arafatleo/image/upload/v1697548701/Location/pexels-photo-1371360_r1f3px.jpg"
                         alt=""

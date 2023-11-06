@@ -18,8 +18,15 @@ const ServiceCommentForm = ({ onSubmitReview, isQuestion }: any) => {
   return (
     <div className="pt-3">
       <Paper
+        className="border border-gray-300 p-2 rounded-md"
         elevation={3}
-        style={{ padding: "16px", paddingLeft: "20px", height: "275px" }}
+        style={{
+          padding: "16px",
+          paddingLeft: "20px",
+          height: "275px",
+          background: "#010313",
+          color: "white",
+        }}
       >
         <Typography variant="h6" gutterBottom>
           {isQuestion ? "Ask a Question" : "Add a Comment"}
@@ -31,6 +38,7 @@ const ServiceCommentForm = ({ onSubmitReview, isQuestion }: any) => {
             defaultValue=""
             render={({ field }) => (
               <TextField
+                className="bg-gray-300 rounded-md"
                 label={isQuestion ? "Your Question" : "Your Comment"}
                 multiline
                 rows={4}

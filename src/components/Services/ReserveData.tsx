@@ -40,7 +40,14 @@ const ReservedCard = ({ id }: any) => {
     } catch (error) {}
   };
   return (
-    <Card elevation={3}>
+    <Card
+      style={{
+        background: "#010313",
+        color: "white",
+      }}
+      className="border border-gray-300 p-2 rounded-md"
+      elevation={3}
+    >
       <CardContent>
         <Typography variant="h6" gutterBottom>
           Property highlights

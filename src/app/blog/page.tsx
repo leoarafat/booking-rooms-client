@@ -58,7 +58,10 @@ export default function BlogCardList() {
         <Grid container spacing={2}>
           {mapData?.map((blog: any, index: number) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ maxWidth: 345 }}>
+              <Card
+                className="border border-gray-300 p-2 rounded-md"
+                sx={{ maxWidth: 345, background: "#010313", color: "white" }}
+              >
                 <CardHeader
                   title={blog?.title}
                   subheader={new Date(blog?.createdAt).toLocaleString("en-US", {
@@ -72,18 +75,22 @@ export default function BlogCardList() {
                   alt={blog?.title}
                 />
                 <CardContent>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2">
                     {blog?.description.slice(0, 150)}...
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
+                  <IconButton
+                    sx={{ color: "#fff" }}
+                    aria-label="add to favorites"
+                  >
                     <FavoriteIcon />
                   </IconButton>
-                  <IconButton aria-label="share">
+                  <IconButton sx={{ color: "#fff" }} aria-label="share">
                     <ShareIcon />
                   </IconButton>
                   <ExpandMore
+                    sx={{ color: "#fff" }}
                     expand={expanded}
                     onClick={handleExpandClick}
                     aria-expanded={expanded}

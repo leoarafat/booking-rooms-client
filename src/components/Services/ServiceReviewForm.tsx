@@ -23,7 +23,11 @@ const ServiceReviewForm = ({ onSubmitReview }: any) => {
 
   return (
     <div className="pt-3 ">
-      <Paper elevation={3} style={{ padding: "16px" }}>
+      <Paper
+        className="border border-gray-300 p-2 rounded-md"
+        elevation={3}
+        style={{ padding: "16px", background: "#010313", color: "white" }}
+      >
         <Typography variant="h6" gutterBottom>
           Write a Review
         </Typography>
@@ -34,6 +38,7 @@ const ServiceReviewForm = ({ onSubmitReview }: any) => {
             defaultValue={0}
             render={({ field }) => (
               <Rating
+                className="bg-[#125a9e] p-1 my-1 rounded-md"
                 name="rating"
                 value={field.value}
                 onChange={(event, newValue) => field.onChange(newValue)}
@@ -47,6 +52,7 @@ const ServiceReviewForm = ({ onSubmitReview }: any) => {
             defaultValue=""
             render={({ field }) => (
               <TextField
+                className="bg-gray-300 rounded-md"
                 label="Your Review"
                 multiline
                 rows={4}
