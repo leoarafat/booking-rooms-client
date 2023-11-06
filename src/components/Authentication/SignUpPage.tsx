@@ -39,12 +39,12 @@ function SignUpPage() {
 
   return (
     <div className="flex h-screen items-center justify-center ">
-      <div className="bg-white shadow-md rounded w-full max-w-md p-8">
-        <h2 className="text-2xl text-gray-800 font-bold mb-4">Sign Up</h2>
+      <div className="bg-[#150F2D] shadow-md rounded w-full max-w-md p-8">
+        <h2 className="text-2xl text-gray-200 font-bold mb-4">Sign Up</h2>
         {/* Name */}
         <div className="mb-4 relative">
           <label
-            className="block text-gray-700 text-sm font-semibold mb-2"
+            className="block text-gray-100 text-sm font-semibold mb-2"
             htmlFor="name"
           >
             User Name
@@ -73,7 +73,7 @@ function SignUpPage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4 relative">
             <label
-              className="block text-gray-700 text-sm font-semibold mb-2"
+              className="block text-gray-100 text-sm font-semibold mb-2"
               htmlFor="email"
             >
               Email
@@ -100,7 +100,7 @@ function SignUpPage() {
           </div>
           <div className="mb-4 relative">
             <label
-              className="block text-gray-700 text-sm font-semibold mb-2"
+              className="block text-gray-100 text-sm font-semibold mb-2"
               htmlFor="password"
             >
               Password
