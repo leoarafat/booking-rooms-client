@@ -41,7 +41,7 @@ function HeroSection() {
   };
   return (
     <section
-      className="flex items-center"
+      className="flex items-center "
       style={{
         minHeight: "80vh",
 

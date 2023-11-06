@@ -63,45 +63,44 @@ const UpComingService = () => {
             Next
           </Button>
         </Box>
-        <div className="pt-3">
-          <Grid container spacing={3}>
-            {upcomingServices
-              ?.slice(startIndex, startIndex + itemsPerPage)
-              .map((service: any) => (
-                <Grid item key={service.id} xs={12} sm={6} md={4}>
-                  <Card
-                    style={{
-                      border: "1px solid #e1e1e1",
-                      boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-                      borderRadius: "8px",
-                      height: "400px",
-                    }}
-                  >
-                    <CardMedia
-                      component="img"
-                      sx={{ width: "100%", height: "200px" }}
-                      image={service.thumbnail?.url}
-                      alt={service.propertyName}
-                    />
-                    <CardContent>
-                      <Typography variant="h6" gutterBottom>
-                        {service.propertyName}
-                      </Typography>
-                      <Typography variant="body2">
-                        Location: {service.propertyLocation}
-                      </Typography>
-                      <Typography variant="body2">
-                        Bed: {service.bedTitle}
-                      </Typography>
-                      <Typography variant="h5">
-                        <span className="text-red-400">{service.status}</span>
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-          </Grid>
-        </div>
+
+        <Grid container spacing={3}>
+          {upcomingServices
+            ?.slice(startIndex, startIndex + itemsPerPage)
+            .map((service: any) => (
+              <Grid item key={service.id} xs={12} sm={6} md={4}>
+                <Card
+                  className="  border border-gray-300 p-2 rounded-md"
+                  style={{
+                    height: "400px",
+                    backgroundColor: "#010313",
+                    color: "white",
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    sx={{ width: "100%", height: "200px" }}
+                    image={service.thumbnail?.url}
+                    alt={service.propertyName}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      {service.propertyName}
+                    </Typography>
+                    <Typography variant="body2">
+                      Location: {service.propertyLocation}
+                    </Typography>
+                    <Typography variant="body2">
+                      Bed: {service.bedTitle}
+                    </Typography>
+                    <Typography variant="h5">
+                      <span className="text-red-400">{service.status}</span>
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+        </Grid>
       </Container>
     </div>
   );

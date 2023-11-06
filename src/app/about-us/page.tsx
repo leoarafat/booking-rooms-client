@@ -19,7 +19,11 @@ const AboutUs = () => {
         </Typography>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
-            <Paper elevation={3} style={{ padding: "20px" }}>
+            <Paper
+              className="bg-[#010313] text-white border border-gray-300 p-2 rounded-md"
+              elevation={3}
+              style={{ padding: "20px" }}
+            >
               <Typography variant="h5" gutterBottom>
                 Our Story
               </Typography>
@@ -33,7 +37,11 @@ const AboutUs = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Paper elevation={3} style={{ padding: "20px" }}>
+            <Paper
+              className="bg-[#010313] text-white border border-gray-300 p-2 rounded-md"
+              elevation={3}
+              style={{ padding: "20px" }}
+            >
               <Typography variant="h5" gutterBottom>
                 Our Mission
               </Typography>

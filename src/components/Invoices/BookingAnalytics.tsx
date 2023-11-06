@@ -1,7 +1,7 @@
 "use client";
 import { useGetBookingAnalyticsQuery } from "@/redux/slices/services/analyticsApi";
 import { styles } from "@/utils/styles";
-import { Spin } from "antd";
+import { Row, Space, Spin } from "antd";
 import React, { FC } from "react";
 import {
   ResponsiveContainer,
@@ -29,7 +29,17 @@ const BookingsAnalytics: FC<Props> = ({ isDashboard }) => {
   return (
     <>
       {isLoading ? (
-        <Spin size="large" />
+        <Row
+          justify="center"
+          align="middle"
+          style={{
+            height: "100vh",
+          }}
+        >
+          <Space>
+            <Spin tip="Loading" size="large"></Spin>
+          </Space>
+        </Row>
       ) : (
         <div className={isDashboard ? "h-[30vh]" : "h-screen"}>
           <div className={isDashboard ? "mt-0 pl-[40px] mb-2" : "mt-[50px]"}>

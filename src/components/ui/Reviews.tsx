@@ -82,32 +82,31 @@ const ReviewCard = () => {
             disabled={startIndex + itemsPerPage >= reviewsData.length}
           ></Button>
         </Box>
-        <div className="pt-3">
-          <Grid container spacing={3}>
-            {data?.data.map((review, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card style={{ color: "#000" }}>
-                  <CardContent>
-                    <Avatar
-                      src={review?.user?.avatar?.url}
-                      alt={review?.user?.name}
-                    />
-                    <Typography variant="h6" gutterBottom>
-                      {review?.user?.name}
-                    </Typography>
-                    <Rating
-                      name="rating"
-                      value={review.rating}
-                      precision={0.5}
-                      readOnly
-                    />
-                    <Typography variant="body2">{review.comment}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </div>
+
+        <Grid container spacing={3}>
+          {data?.data.map((review, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card style={{ color: "#000" }}>
+                <CardContent className="bg-[#010313] text-white border border-gray-300 p-2 rounded-md">
+                  <Avatar
+                    src={review?.user?.avatar?.url}
+                    alt={review?.user?.name}
+                  />
+                  <Typography variant="h6" gutterBottom>
+                    {review?.user?.name}
+                  </Typography>
+                  <Rating
+                    name="rating"
+                    value={review.rating}
+                    precision={0.5}
+                    readOnly
+                  />
+                  <Typography variant="body2">{review.comment}</Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     </div>
   );

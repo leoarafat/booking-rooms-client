@@ -37,7 +37,7 @@ const CategoryCreateForm = () => {
         console.error("Login error:", error);
       }
     }
-  }, [error]);
+  }, [error, isSuccess]);
   const onSubmit = async (data: any) => {
     try {
       const categoryData = {

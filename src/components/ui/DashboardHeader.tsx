@@ -32,12 +32,7 @@ const Header = () => {
 
   // const role = "admin";
   return (
-    <AntHeader
-      style={{
-        backgroundImage:
-          "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,10,77,1) 85%, rgba(22,33,36,1) 100%)",
-      }}
-    >
+    <AntHeader className="bg-[#010313] border-b">
       <Row
         justify="end"
         align="middle"

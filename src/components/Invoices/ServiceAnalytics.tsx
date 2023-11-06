@@ -1,7 +1,7 @@
 "use client";
 import { useGetServicesAnalyticsQuery } from "@/redux/slices/services/analyticsApi";
 import { styles } from "@/utils/styles";
-import { Spin } from "antd";
+import { Row, Space, Spin } from "antd";
 import React from "react";
 import {
   BarChart,
@@ -27,7 +27,17 @@ const ServiceAnalytics = (props: Props) => {
   const minValue = 0;
 
   return isLoading ? (
-    <Spin size="large" />
+    <Row
+      justify="center"
+      align="middle"
+      style={{
+        height: "100vh",
+      }}
+    >
+      <Space>
+        <Spin tip="Loading" size="large"></Spin>
+      </Space>
+    </Row>
   ) : (
     <div className="h-screen">
       <div className="mt-[50px]">

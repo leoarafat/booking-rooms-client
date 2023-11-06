@@ -65,45 +65,47 @@ const AllCategory = () => {
             }
           ></Button>
         </Box>
-        <div className="pt-3">
-          <Grid container spacing={3}>
-            {categoryData?.categories
-              ?.slice(startIndex, startIndex + itemsPerPage)
-              .map((category) => (
-                <Grid item key={category._id} xs={12} sm={6} md={4}>
-                  <Link href={`/services?category=${category._id}`}>
-                    {" "}
-                    <Card
-                      style={{
-                        transition: "transform 0.2s",
-                      }}
-                    >
-                      <CardContent>
-                        <img
-                          src={category?.thumbnail?.url}
-                          alt={category.category}
-                          style={{
-                            width: "100%",
-                            height: "200px",
-                            objectFit: "cover",
-                          }}
-                        />
-                        <Typography variant="h6" gutterBottom>
-                          {category.category}
-                        </Typography>
-                        <Typography variant="body2">
-                          {category?.services?.length === 0
-                            ? 0
-                            : category?.services?.length}{" "}
-                          (Property)
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </Grid>
-              ))}
-          </Grid>
-        </div>
+
+        <Grid container spacing={3}>
+          {categoryData?.categories
+            ?.slice(startIndex, startIndex + itemsPerPage)
+            .map((category) => (
+              <Grid item key={category._id} xs={12} sm={6} md={4}>
+                <Link href={`/services?category=${category._id}`}>
+                  {" "}
+                  <Card
+                    className="border border-gray-300 p-2 rounded-md"
+                    style={{
+                      backgroundColor: "#010313",
+                      color: "white",
+                      transition: "transform 0.2s",
+                    }}
+                  >
+                    <CardContent>
+                      <img
+                        src={category?.thumbnail?.url}
+                        alt={category.category}
+                        style={{
+                          width: "100%",
+                          height: "250px",
+                          objectFit: "cover",
+                        }}
+                      />
+                      <Typography variant="h6" gutterBottom>
+                        {category.category}
+                      </Typography>
+                      <Typography variant="body2">
+                        {category?.services?.length === 0
+                          ? 0
+                          : category?.services?.length}{" "}
+                        (Property)
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </Grid>
+            ))}
+        </Grid>
       </Container>
     </div>
   );

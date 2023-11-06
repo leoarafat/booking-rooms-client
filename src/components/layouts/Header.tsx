@@ -15,13 +15,7 @@ const Header = () => {
   const { data, error } = useLoadUserQuery(user?.userId);
   // console.log(data);
   return (
-    <div
-      className=" z-40 w-full border-b  mb-2"
-      style={{
-        backgroundImage:
-          "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,10,77,1) 85%, rgba(22,33,36,1) 100%)",
-      }}
-    >
+    <div className=" z-40 w-full border-b bg-[#010313]  ">
       <div className="container m-auto px-2 md:px-12 lg:px-7">
         <div className="flex px-6 md:px-0 z-20 flex-wrap items-center justify-between py-3 gap-6 md:py-4 md:gap-0">
           <input
@@ -50,13 +44,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <div
-            style={{
-              backgroundImage:
-                "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,10,77,1) 85%, rgba(22,33,36,1) 100%)",
-            }}
-            className=" fixed h-full w-4/5 max-w-sm top-0 -left-full peer-checked:-left-0 md:relative md:top-0 md:left-0 transition-all z-30 md:flex items-center p-8 md:space-y-0 md:p-0 md:flex-nowrap md:bg-transparent md:w-max"
-          >
+          <div className=" fixed h-full w-4/5 max-w-sm top-0 -left-full peer-checked:-left-0 md:relative md:top-0 md:left-0 transition-all z-30 md:flex items-center p-8 md:space-y-0 md:p-0 md:flex-nowrap md:bg-transparent md:w-max">
             <div className="z-20 flex gap-8 md:gap-0 flex-col md:flex-row md:items-center w-full">
               <ul className="pt-28 lg:pt-0 gap-8 tracking-wide font-medium flex-col flex md:flex-row md:gap-0 t">
                 <Link href="/">
