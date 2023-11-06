@@ -42,7 +42,7 @@ const Card = ({ service }: any) => {
   };
   return (
     <div>
-      <article className="border border-gray-200 overflow-hidden bg-white shadow-sm rounded mb-5">
+      <article className="border border-gray-200 overflow-hidden bg-[#010313] text-whites shadow-sm rounded mb-5">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/4 flex p-3">
             <div>
@@ -55,9 +55,7 @@ const Card = ({ service }: any) => {
           </div>
           <div className="md:w-2/4">
             <div className="p-4">
-              <p className="text-black text-[20px] font-semibold ">
-                {propertyName}
-              </p>
+              <p className=" text-[20px] font-semibold ">{propertyName}</p>
               <div className="flex flex-wrap items-center space-x-2 mb-2">
                 <div className="ratings">
                   <div className="my-1">
@@ -72,14 +70,14 @@ const Card = ({ service }: any) => {
                 <b className="text-gray-300">Out Of</b>
                 <span className="ml-1 text-yellow-500">5</span>
               </div>
-              <p className="text-black mb-2">
+              <p className=" mb-2">
                 <LocationOnIcon fontSize="small" /> Location: {propertyLocation}
               </p>
             </div>
           </div>
           <div className="md:w-1/4 border-t lg:border-t-0 lg:border-l border-gray-200">
             <div className="p-5">
-              <span className="text-xl font-semibold text-black">${price}</span>
+              <span className="text-xl font-semibold ">${price}</span>
               <p className="text-green-500">Per nights / 2 adults</p>
 
               <div className="my-3">

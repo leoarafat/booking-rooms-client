@@ -96,7 +96,7 @@ const LayoutPage = () => {
     if (!isNaN(numericValue)) {
       //@ts-ignore
       setMaxPrice(numericValue);
-      setError(""); // Clear any previous error
+      setError("");
     } else {
       setMaxPrice("");
       setError("Please enter a valid number");
@@ -112,12 +112,17 @@ const LayoutPage = () => {
       <Grid container spacing={2}>
         {/* Left Sidebar with Filters */}
         <Grid item xs={12} md={3}>
-          <Paper elevation={3} style={{ padding: "16px" }}>
+          <Paper
+            className="  border border-gray-300  rounded-md"
+            elevation={3}
+            style={{ padding: "16px", background: "#010313", color: "white" }}
+          >
             <Typography variant="h6" gutterBottom>
               Filters
             </Typography>
             <div className="pb-1">
               <TextField
+                className="bg-gray-300 rounded-md"
                 label="Min Price"
                 variant="outlined"
                 value={minPrice}
@@ -129,6 +134,7 @@ const LayoutPage = () => {
               {error && <Alert severity="error">{error}</Alert>}
             </div>
             <TextField
+              className="bg-gray-300 rounded-md"
               label="Max Price"
               variant="outlined"
               fullWidth
@@ -191,9 +197,18 @@ const LayoutPage = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               {/* Search Bar */}
-              <Paper elevation={3} style={{ padding: "16px" }}>
+              <Paper
+                className="bg-[#010313] text-white border border-gray-300 rounded-md"
+                elevation={3}
+                style={{
+                  padding: "16px",
+                  background: "#010313",
+                  color: "white",
+                }}
+              >
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <TextField
+                    className=" bg-gray-300 rounded-md"
                     label="Search"
                     variant="outlined"
                     fullWidth
