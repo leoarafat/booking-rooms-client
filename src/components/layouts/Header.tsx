@@ -32,7 +32,7 @@ const Header = () => {
                         peer-checked:opacity-75 peer-checked:block w-full h-screen
                         bg-gray-200 bg-opacity-75 dark:bg-darker dark:opacity-80"
           ></label>
-          <div className="relative z-40">
+          <div className="relative z-40 ">
             <Link href="/" aria-label="logo">
               <Image
                 src={LogoImage}
@@ -44,7 +44,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className=" fixed h-full w-4/5 max-w-sm top-0 -left-full peer-checked:-left-0 md:relative md:top-0 md:left-0 transition-all z-30 md:flex items-center p-8 md:space-y-0 md:p-0 md:flex-nowrap md:bg-transparent md:w-max">
+          <div className=" fixed h-full w-4/5 max-w-sm top-0 -left-full peer-checked:-left-0 md:relative md:top-0 md:left-0 transition-all z-30 md:flex items-center p-8 md:space-y-0 md:p-0 md:flex-nowrap md:bg-transparent md:w-max bg-[#150F2D]">
             <div className="z-20 flex gap-8 md:gap-0 flex-col md:flex-row md:items-center w-full">
               <ul className="pt-28 lg:pt-0 gap-8 tracking-wide font-medium flex-col flex md:flex-row md:gap-0 t">
                 <Link href="/">

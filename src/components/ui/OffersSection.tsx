@@ -77,9 +77,12 @@ const Offers = () => {
                           Explore thousands of destinations worldwide and save
                           15% or more.
                         </Typography>{" "}
-                        <Button variant="outlined" color="primary">
-                          Find late escape deals
-                        </Button>
+                        <Link href={"/extended-says"}>
+                          {" "}
+                          <Button variant="outlined" color="primary">
+                            Find late escape deals
+                          </Button>
+                        </Link>
                       </CardContent>
                     </Grid>
                     <Grid item xs={12} sm={4}>

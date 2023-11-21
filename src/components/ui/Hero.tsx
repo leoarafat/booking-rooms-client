@@ -88,23 +88,25 @@ function HeroSection() {
                   inputProps={{ "aria-label": "search" }}
                   style={{
                     background: "white",
-                    color: "white",
+                    color: "gray",
                     width: "100%",
                     padding: "8px 12px",
                     border: "1px solid #ccc",
                     borderRadius: "8px",
                   }}
                 />
-                <IconButton
-                  style={{
-                    background: "white",
-                    color: "gray",
-                    padding: "10px",
-                  }}
-                  aria-label="search"
-                >
-                  <SearchIcon />
-                </IconButton>
+                <Link href={"/service"}>
+                  <IconButton
+                    style={{
+                      background: "white",
+                      color: "gray",
+                      padding: "10px",
+                    }}
+                    aria-label="search"
+                  >
+                    <SearchIcon />
+                  </IconButton>
+                </Link>
               </form>
             </Grid>
             <Grid item xs={12} md={6}>
