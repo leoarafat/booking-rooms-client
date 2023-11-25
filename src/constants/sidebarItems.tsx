@@ -116,16 +116,16 @@ export const sidebarItems = (role: string) => {
       icon: <ScheduleOutlined />,
       key: `/${role}/booking-list`,
     },
-    {
-      label: <Link href={`/${role}/notification`}>Notification</Link>,
-      icon: <ThunderboltOutlined />,
-      key: `/${role}/notification`,
-    },
-    {
-      label: <Link href={`/${role}/payment`}>Payment</Link>,
-      icon: <CreditCardOutlined />,
-      key: `/${role}/payment`,
-    },
+    // {
+    //   label: <Link href={`/${role}/notification`}>Notification</Link>,
+    //   icon: <ThunderboltOutlined />,
+    //   key: `/${role}/notification`,
+    // },
+    // {
+    //   label: <Link href={`/${role}/payment`}>Payment</Link>,
+    //   icon: <CreditCardOutlined />,
+    //   key: `/${role}/payment`,
+    // },
   ];
 
   if (role === USER_ROLE.SUPER_ADMIN) return superAdminSidebarItems;

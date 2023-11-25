@@ -23,6 +23,7 @@ const LatestNews = () => {
               style={{
                 background: "#010313",
                 color: "white",
+                height: "560px",
               }}
               className=" text-white border border-gray-300 p-2 rounded-md"
             >

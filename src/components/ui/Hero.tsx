@@ -130,7 +130,7 @@ function HeroSection() {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                   <Button
                     type="button"
                     variant="contained"
@@ -146,8 +146,8 @@ function HeroSection() {
                     <MoreHorizIcon style={{ marginRight: "8px" }} />
                     Actions
                   </Button>
-                </Grid>
-                <Grid item>
+                </Grid> */}
+                {/* <Grid item>
                   <Button
                     type="button"
                     variant="contained"
@@ -164,7 +164,7 @@ function HeroSection() {
                     Filter
                     <FilterListIcon style={{ marginLeft: "8px" }} />
                   </Button>
-                </Grid>
+                </Grid> */}
               </Grid>
               <Paper
                 id="actionsDropdown"
